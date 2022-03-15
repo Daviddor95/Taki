@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.game.taki.MenuController">
+   <children>
+      <Button layoutX="144.0" layoutY="172.0" mnemonicParsing="false" text="Play against the computer" />
+      <Button layoutX="360.0" layoutY="171.0" mnemonicParsing="false" text="Play online" />
+      <Button layoutX="177.0" layoutY="223.0" mnemonicParsing="false" text="Game settings" />
+      <Button layoutX="361.0" layoutY="222.0" mnemonicParsing="false" text="Leaderbord" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="200.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Taki_Cards_Game_Logo.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
