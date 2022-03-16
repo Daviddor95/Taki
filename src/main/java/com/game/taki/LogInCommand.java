@@ -1,7 +1,7 @@
 package com.game.taki;
 
 public class LogInCommand extends Command {
-    public LogInCommand(IModel m) {
+    public LogInCommand(IStartScreenModel m) {
         super(m);
     }
 

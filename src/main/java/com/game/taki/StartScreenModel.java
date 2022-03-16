@@ -1,23 +1,24 @@
 package com.game.taki;
 
-public class StartScreenModel implements IModel {
-    private IController controller;
+public class StartScreenModel implements IStartScreenModel {
+    private IStartScreenController controller;
     private IDatabase usersDatabase;
     private String userName;
     private String password;
     private boolean isSignedIn;
 
-    public StartScreenModel(IController c) {
+    public StartScreenModel(IStartScreenController c) {
         this.controller = c;
+        this.usersDatabase = new Database();
         this.isSignedIn = false;
     }
 
-    public void setUserName(CharSequence name) {
-        this.userName = name.toString();
+    public void setUserName(String name) {
+        this.userName = name;
     }
 
-    public void setPassword(CharSequence password) {
-        this.password = password.toString();
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public boolean logIn() {

@@ -1,6 +1,6 @@
 package com.game.taki;
 
-public class User implements IUser {
+public class User {
     private String userName;
     private String password;
     private int highScore;

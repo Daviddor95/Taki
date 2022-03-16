@@ -1,10 +1,10 @@
 package com.game.taki;
 
-public class MenuController implements IController {
-    private IModel model;
+public class MenuController implements IMenuController {
+    private IMenuModel model;
     private IView view;
 
-    public void setModel(IModel m) {
+    public void setModel(IMenuModel m) {
         this.model = m;
     }
 

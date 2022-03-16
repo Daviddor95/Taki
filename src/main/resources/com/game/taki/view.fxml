@@ -7,12 +7,9 @@
 
 <AnchorPane fx:id="startScreen" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.game.taki.StartScreenController">
-   <Button fx:id="createAccountButton" layoutX="246.0" layoutY="265.0" mnemonicParsing="false"
-           onAction="#onCreateAccountButtonClick" text="Create account"/>
-   <Button fx:id="logInButton" layoutX="193.0" layoutY="265.0" mnemonicParsing="false" onAction="#onLogInButtonClick"
-           text="Log in"/>
-   <Button fx:id="guestButton" layoutX="206.0" layoutY="303.0" mnemonicParsing="false" onAction="#onGuestButtonClick"
-           text="Continue as a guest"/>
+   <Button fx:id="createAccountButton" layoutX="246.0" layoutY="265.0" mnemonicParsing="false" text="Create account"/>
+   <Button fx:id="logInButton" layoutX="193.0" layoutY="265.0" mnemonicParsing="false" text="Log in"/>
+   <Button fx:id="guestButton" layoutX="206.0" layoutY="303.0" mnemonicParsing="false" text="Continue as a guest"/>
    <TextField fx:id="userNameInput" layoutX="192.0" layoutY="163.0"/>
    <TextField fx:id="passwordInput" layoutX="192.0" layoutY="202.0"/>
    <Label fx:id="userNameLabel" layoutX="120.0" layoutY="167.0" text="User name:"/>

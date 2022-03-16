@@ -18,7 +18,8 @@ public class Database implements IDatabase {
     @Override
     public void addUser(String userName, String password) {
         ArrayList<String> userDetails = new ArrayList<>();
-        userDetails.add(this.getPassword(userName));
+        userDetails.add(userName);
+        userDetails.add(password);
         userDetails.add("0");
         this.users.put(userName, userDetails);
     }
@@ -42,18 +43,4 @@ public class Database implements IDatabase {
         this.users.replace(userName, userDetails);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
