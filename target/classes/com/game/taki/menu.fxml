@@ -6,10 +6,10 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.game.taki.MenuController">
-   <Button layoutX="144.0" layoutY="172.0" mnemonicParsing="false" text="Play against the computer"/>
-   <Button layoutX="360.0" layoutY="171.0" mnemonicParsing="false" text="Play online"/>
-   <Button layoutX="177.0" layoutY="223.0" mnemonicParsing="false" text="Game settings"/>
-   <Button layoutX="361.0" layoutY="222.0" mnemonicParsing="false" text="Leaderboard"/>
+   <Button fx:id="playPCButton" layoutX="144.0" layoutY="172.0" mnemonicParsing="false" text="Play against the computer"/>
+   <Button fx:id="playOnlineButton" layoutX="360.0" layoutY="171.0" mnemonicParsing="false" text="Play online"/>
+   <Button fx:id="settingsButton" layoutX="177.0" layoutY="223.0" mnemonicParsing="false" text="Game settings"/>
+   <Button fx:id="leaderboardButton" layoutX="361.0" layoutY="222.0" mnemonicParsing="false" text="Leaderboard"/>
    <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="200.0" layoutY="14.0" pickOnBounds="true"
               preserveRatio="true">
       <Image url="@Taki_Cards_Game_Logo.png"/>

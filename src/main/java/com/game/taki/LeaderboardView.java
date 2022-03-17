@@ -5,12 +5,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class MenuView extends Application {
+public class LeaderboardView extends Application {
     private IController controller;
 
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(MenuView.class.getResource("menu.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(LeaderboardView.class.getResource("leaderboard.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 720, 540);
         this.controller = fxmlLoader.getController();
         Model model = Model.getModel(this.controller);

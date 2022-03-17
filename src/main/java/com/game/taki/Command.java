@@ -1,9 +1,9 @@
 package com.game.taki;
 
 public abstract class Command {
-    public IStartScreenModel model;
+    public Model model;
 
-    protected Command(IStartScreenModel m) {
+    protected Command(Model m) {
         this.model = m;
     }
 

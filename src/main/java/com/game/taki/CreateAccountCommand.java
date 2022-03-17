@@ -1,7 +1,7 @@
 package com.game.taki;
 
 public class CreateAccountCommand extends Command {
-    public CreateAccountCommand(IStartScreenModel m) {
+    public CreateAccountCommand(Model m) {
         super(m);
     }
 

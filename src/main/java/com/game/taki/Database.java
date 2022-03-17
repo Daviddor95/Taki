@@ -8,6 +8,15 @@ public class Database implements IDatabase {
 
     public Database() {
         this.users = new HashMap<>();
+
+        ArrayList<String> userDetails1 = new ArrayList<>();
+        userDetails1.add("95");
+        userDetails1.add("10");
+        this.users.put("David", userDetails1);
+        ArrayList<String> userDetails2 = new ArrayList<>();
+        userDetails2.add("97");
+        userDetails2.add("9");
+        this.users.put("Ella", userDetails2);
     }
 
     @Override
@@ -18,7 +27,6 @@ public class Database implements IDatabase {
     @Override
     public void addUser(String userName, String password) {
         ArrayList<String> userDetails = new ArrayList<>();
-        userDetails.add(userName);
         userDetails.add(password);
         userDetails.add("0");
         this.users.put(userName, userDetails);
@@ -41,6 +49,15 @@ public class Database implements IDatabase {
         int newScore = this.getScore(userName) + 1;
         userDetails.add((Integer.toString(newScore)));
         this.users.replace(userName, userDetails);
+    }
+
+    @Override
+    public HashMap<String, Integer> getScores() {
+        HashMap<String, Integer> scores = new HashMap<>();
+        for (String name : this.users.keySet()) {
+            scores.put(name, this.getScore(name));
+        }
+        return scores;
     }
 }
 

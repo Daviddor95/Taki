@@ -1,7 +1,7 @@
 package com.game.taki;
 
 public class GuestCommand extends Command {
-    public GuestCommand(IStartScreenModel m) {
+    public GuestCommand(Model m) {
         super(m);
     }
 
