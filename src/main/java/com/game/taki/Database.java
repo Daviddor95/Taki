@@ -1,14 +1,15 @@
 package com.game.taki;
 
+import javafx.beans.property.SimpleStringProperty;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.TreeMap;
 
 public class Database implements IDatabase {
     private HashMap<String, ArrayList<String>> users;
 
     public Database() {
         this.users = new HashMap<>();
-
         ArrayList<String> userDetails1 = new ArrayList<>();
         userDetails1.add("95");
         userDetails1.add("10");

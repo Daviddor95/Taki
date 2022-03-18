@@ -100,6 +100,10 @@ public class StartScreenController implements IController {
         this.stage = s;
     }
 
+    @Override
+    public void updateScene() {
+    }
+
 
 //    @FXML
 //    protected void onCreateAccountButtonClick() {

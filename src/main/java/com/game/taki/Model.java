@@ -1,10 +1,12 @@
 package com.game.taki;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.TreeMap;
 
 public class Model {
     private IController controller;
@@ -12,7 +14,6 @@ public class Model {
     private String userName;
     private String password;
     private boolean isSignedIn;
-    private HashMap<String, Integer> usersScores;
     private static Model model;
 
     private Model() {
@@ -65,11 +66,24 @@ public class Model {
 
     public boolean showLeaderboard() {
         // this.usersScores = this.usersDatabase.getScores();
+        this.controller.updateScene();
         return true;
     }
 
-    public HashMap<String, Integer> getScores() {
-        return this.usersDatabase.getScores();
+    public ObservableList<Map<String, String>> getScores() {
+        ObservableList<Map<String, String>> table = FXCollections.observableArrayList();
+        HashMap<String, Integer> scoresMap = new HashMap<>(this.usersDatabase.getScores());
+        int len = scoresMap.size();
+        for (int i = 0; i < len; i++) {
+            Map<String, String> row = new HashMap<>();
+            String userName = scoresMap.keySet().toArray()[0].toString();
+            System.out.println(userName);
+            row.put("users", userName);
+            row.put("scores", scoresMap.get(userName).toString());
+            table.add(row);
+            scoresMap.remove(userName);
+        }
+        return table;
     }
 
 //    // @@@@@@
