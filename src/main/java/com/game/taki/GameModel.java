@@ -9,6 +9,7 @@ public class GameModel {
     private int currentPlayerIndex;
     private boolean isNextPlayer;
     private int numberOfTimesItsStillMyTurn;
+    private boolean isNextStopped;
 
     public GameModel(ArrayList<Player> players, ArrayList<String> colorsInGame){
         this.deck = new Deck(colorsInGame);
@@ -16,15 +17,27 @@ public class GameModel {
         this.pile = new PileOfPlayedCards();
         this.isNextPlayer = false;
         this.numberOfTimesItsStillMyTurn = 0;
+        this.isNextStopped = false;
 
     }
     public Player getCurrentPlayer(){
         return players.get(currentPlayerIndex);
     }
 
-    public void ReverseOrderOfPlayers() {
+    // Takes an arraylist as a parameter and returns
+    // a reversed arraylist
+    public void ReverseOrderOfPlayers()
+    {
+        // Arraylist for storing reversed elements
+        ArrayList<Player> revPlayerList = new ArrayList<Player>();
+        for (int i = players.size() - 1; i >= 0; i--) {
+            // Append the elements in reverse order
+            revPlayerList.add(players.get(i));
+        }
 
+        this.setPlayers(revPlayerList);
     }
+
 
     public Deck getDeck() {
         return deck;
@@ -62,11 +75,7 @@ public class GameModel {
 
     public void changeCurrentPlayerToTheNextOne() {
         if(isNextPlayer){
-            if(this.currentPlayerIndex == (this.players.size() - 1)){
-                this.currentPlayerIndex = 0;
-            } else{
-                this.currentPlayerIndex++;
-            }
+            this.currentPlayerIndex = this.getNextPlayerIndex();
         }
     }
 
@@ -84,5 +93,37 @@ public class GameModel {
 
     public void setNumberOfTimesItsStillMyTurn(int numberOfTimesItsStillMyTurn) {
         this.numberOfTimesItsStillMyTurn = numberOfTimesItsStillMyTurn;
+    }
+
+    public int getNextPlayerIndex(){
+        if(this.currentPlayerIndex == (this.players.size() - 1)){
+           return 0;
+        } else{
+           return (this.currentPlayerIndex+ 1);
+        }
+    }
+
+    public Player getNextPlayer(){
+        return players.get(getNextPlayerIndex());
+    }
+
+    public int getPreviousPlayerIndex(){
+        if(this.currentPlayerIndex == 0){
+            return (this.players.size() - 1);
+        } else{
+            return (this.currentPlayerIndex- 1);
+        }
+    }
+
+    public Player getPreviousPlayer(){
+        return players.get(getPreviousPlayerIndex());
+    }
+
+    public boolean isNextStopped() {
+        return isNextStopped;
+    }
+
+    public void setIsNextStopped(boolean isNextStopped) {
+        this.isNextStopped = isNextStopped;
     }
 }

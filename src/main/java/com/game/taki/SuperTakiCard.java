@@ -7,7 +7,6 @@ public class SuperTakiCard extends TakiCard{
         super(decoratedCard);
     }
 
-
     @Override
     public void doAction(GameModel game) {
         addedBehaviorForSuperTaki(game);
@@ -15,23 +14,9 @@ public class SuperTakiCard extends TakiCard{
         addedBehavior(game);
     }
 
-    @Override
-    public boolean isValidAction(ICard current) {
-        return this.decoratedCard.isValidAction(current);
-    }
-
-    @Override
-    public String getName() {
-        return this.decoratedCard.getName();
-    }
-
-    @Override
-    public String getColor() {
-        return this.decoratedCard.getColor();
-    }
 
     private void addedBehaviorForSuperTaki(GameModel game) {
-        this.decoratedCard = (SuperTakiCard) new TakiCard(new Card(this.decoratedCard.getName(), game.getPile().getCurrentTopCard().getColor()));
+        this.decoratedCard = new TakiCard(new Card("Taki Card", game.getPile().getCurrentTopCard().getColor()));
         PileOfPlayedCards newPile = game.getPile();
         newPile.setCurrentTopCard(decoratedCard);
         game.setPile(newPile);

@@ -29,4 +29,9 @@ public class GameController implements IController {
     public void setStage(Stage s) {
         this.stage = s;
     }
+
+    @Override
+    public void updateScene() {
+
+    }
 }

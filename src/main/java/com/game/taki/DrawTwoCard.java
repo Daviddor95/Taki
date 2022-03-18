@@ -16,27 +16,16 @@ public class DrawTwoCard extends DecoratedCard{
 
     }
 
-    @Override
-    public boolean isValidAction(ICard current) {
-        return this.decoratedCard.isValidAction(current);
-    }
-
-    @Override
-    public String getName() {
-        return this.decoratedCard.getName();
-    }
-
-    @Override
-    public String getColor() {
-        return this.decoratedCard.getColor();
-    }
 
     protected void addedBehavior(GameModel game) {
-        //ArrayList<Player> players = game.getPlayers();
-        //Player p = game.getNextPlayer();
-        //p.setNumCardsHeNeedsToDraw(p.getNumCardsHeNeedsToDraw()+2);
-        //players.set(game.getNextPlayerIndex, p);
+        ArrayList<Player> players = game.getPlayers();
 
+        Player p = game.getNextPlayer();
+        p.setNumCardsHeNeedsToDraw(game.getCurrentPlayer().getNumCardsHeNeedsToDraw()+2);
+        players.set(game.getNextPlayerIndex(), p);
 
+        Player pCurrent = game.getCurrentPlayer();
+        p.setNumCardsHeNeedsToDraw(0);
+        players.set(game.getCurrentPlayerIndex(), pCurrent);
     }
 }

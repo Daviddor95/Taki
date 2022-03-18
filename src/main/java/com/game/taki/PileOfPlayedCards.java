@@ -11,7 +11,6 @@ public class PileOfPlayedCards {
         currentTopCard = null;
     }
 
-
     public ICard getCurrentTopCard() {
         return currentTopCard;
     }
@@ -27,6 +26,7 @@ public class PileOfPlayedCards {
         if(d.getCards().isEmpty()){
             d.setCards(playedCards);
             d.shuffle();
+            this.playedCards = new ArrayList<ICard>();
         }
     }
 
