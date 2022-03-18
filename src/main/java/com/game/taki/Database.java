@@ -3,13 +3,14 @@ package com.game.taki;
 import javafx.beans.property.SimpleStringProperty;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.TreeMap;
 
 public class Database implements IDatabase {
-    private HashMap<String, ArrayList<String>> users;
+    private Map<String, ArrayList<String>> users;
 
     public Database() {
-        this.users = new HashMap<>();
+        this.users = new TreeMap<>();
         ArrayList<String> userDetails1 = new ArrayList<>();
         userDetails1.add("95");
         userDetails1.add("10");
@@ -53,12 +54,22 @@ public class Database implements IDatabase {
     }
 
     @Override
-    public HashMap<String, Integer> getScores() {
-        HashMap<String, Integer> scores = new HashMap<>();
+    public Map<String, Integer> getScores() {
+        Map<String, Integer> scores = new TreeMap<>();
         for (String name : this.users.keySet()) {
             scores.put(name, this.getScore(name));
         }
         return scores;
     }
 }
+
+
+
+
+
+
+
+
+
+
 

@@ -3,9 +3,12 @@ package com.game.taki;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 
 public class Model {
@@ -15,6 +18,8 @@ public class Model {
     private String password;
     private boolean isSignedIn;
     private static Model model;
+    public static final String usersColumnKey = "Users";
+    public static final String scoresColumnKey = "Scores";
 
     private Model() {
         this.usersDatabase = new Database();
@@ -70,20 +75,30 @@ public class Model {
         return true;
     }
 
-    public ObservableList<Map<String, String>> getScores() {
-        ObservableList<Map<String, String>> table = FXCollections.observableArrayList();
-        HashMap<String, Integer> scoresMap = new HashMap<>(this.usersDatabase.getScores());
-        int len = scoresMap.size();
-        for (int i = 0; i < len; i++) {
-            Map<String, String> row = new HashMap<>();
-            String userName = scoresMap.keySet().toArray()[0].toString();
-            System.out.println(userName);
-            row.put("users", userName);
-            row.put("scores", scoresMap.get(userName).toString());
-            table.add(row);
-            scoresMap.remove(userName);
+    public ObservableList<TableRecord> getScores() {
+        Map<String, Integer> entries = this.usersDatabase.getScores();
+        // ArrayList<Map.Entry<String, Integer>> arrList = new ArrayList<Map.Entry<String, Integer>>(entries);
+        ObservableList<TableRecord> table = FXCollections.observableArrayList();
+        for (Map.Entry<String, Integer> e : entries.entrySet()) {
+            TableRecord tableRecord = new TableRecord(e.getKey(), e.getValue().toString());
+            table.add(tableRecord);
         }
         return table;
+
+
+        // SortedList<Map> sortedList = new SortedList<Map>(table);
+//        ObservableList<Map> table = FXCollections.observableArrayList();
+//        Map scoresMap = new TreeMap<>(this.usersDatabase.getScores());
+//        int len = scoresMap.size();
+//        for (int i = 0; i < len; i++) {
+//            Map row = new TreeMap<>();
+//            String userName = scoresMap.keySet().toArray()[0].toString();
+//            row.put(Model.usersColumnKey, userName);
+//            row.put(Model.scoresColumnKey, scoresMap.get(userName).toString());
+//            table.add(row);
+//            scoresMap.remove(userName);
+//        }
+        // return sortedList;
     }
 
 //    // @@@@@@
