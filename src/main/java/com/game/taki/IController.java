@@ -7,4 +7,5 @@ public interface IController {
     void setModel(Model m);
     void setView(Application v);
     void setStage(Stage stage);
+    void updateScene();
 }

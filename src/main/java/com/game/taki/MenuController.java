@@ -48,6 +48,7 @@ public class MenuController implements IController {
             if (showLeaderboard.execute()) {
                 try {
                     new LeaderboardView().start(stage);
+                    model.showLeaderboard();
                 } catch (Exception e) {
                     // log message
                     e.printStackTrace();
@@ -58,6 +59,10 @@ public class MenuController implements IController {
         }
     };
 
+    @FXML
+    private void initialize() {
+        this.leaderboardButton.setOnAction(this.onLeaderboardButtonClick);
+    }
 
     public void setModel(Model m) {
         this.model = m;
@@ -70,5 +75,9 @@ public class MenuController implements IController {
     @Override
     public void setStage(Stage stage) {
         this.stage = stage;
+    }
+
+    @Override
+    public void updateScene() {
     }
 }
