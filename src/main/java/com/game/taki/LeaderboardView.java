@@ -16,6 +16,7 @@ public class LeaderboardView extends Application {
         Model model = Model.getModel(this.controller);
         this.controller.setModel(model);
         this.controller.setView(this);
+        this.controller.setStage(stage);
         stage.setTitle("Taki");
         stage.setScene(scene);
         stage.show();

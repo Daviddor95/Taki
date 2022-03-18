@@ -3,6 +3,7 @@ package com.game.taki;
 import javafx.beans.property.SimpleStringProperty;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.TreeMap;
 
 public interface IDatabase {
@@ -11,5 +12,5 @@ public interface IDatabase {
     String getPassword(String userName);
     Integer getScore(String userName);
     void updateScore(String userName);
-    HashMap<String, Integer> getScores();
+    Map<String, Integer> getScores();
 }

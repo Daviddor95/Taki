@@ -3,16 +3,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane fx:id="pane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.game.taki.LeaderboardController">
-    <TableView fx:id="highscore" layoutX="200.0" layoutY="90.0" prefHeight="200.0" prefWidth="200.0">
+<AnchorPane fx:id="pane" prefHeight="540.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.game.taki.LeaderboardController">
+    <TableView fx:id="highscore" layoutX="200.0" layoutY="90.0" prefHeight="400.0" prefWidth="300.0">
       <columns>
-          <TableColumn fx:id="users" cellFactory="users" cellValueFactory="users" prefWidth="130.0" text="User name"/>
-          <TableColumn fx:id="scores" cellFactory="scores" cellValueFactory="scores" prefWidth="70.0" text="Wins"/>
+          <TableColumn fx:id="users" editable="false" maxWidth="250.0" minWidth="50.0" prefWidth="230.0" resizable="false" text="User name" />
+          <TableColumn fx:id="scores" editable="false" maxWidth="65.0" minWidth="30.0" prefWidth="65.0" resizable="false" text="Wins" />
       </columns>
-        <sortOrder>
-            <fx:reference source="scores"/>
-        </sortOrder>
     </TableView>
 </AnchorPane>
