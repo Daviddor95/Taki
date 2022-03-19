@@ -1,6 +1,7 @@
 package com.game.taki;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class TakiCard extends DecoratedCard{
 
@@ -19,9 +20,9 @@ public class TakiCard extends DecoratedCard{
 
     protected void addedBehavior(GameModel game) {
         Player currentPlayer = game.getCurrentPlayer();
-        ArrayList<ICard> playerCards = currentPlayer.getPlayerCards();
-        for(int i = 0; i< playerCards.size(); i++){
-            if(playerCards.get(i).getColor().equals(this.decoratedCard.getColor())){
+        List<ICard> playerCards = currentPlayer.getPlayerCards();
+        for(ICard c: playerCards){
+            if(c.getColor().equals(this.decoratedCard.getColor())){
                 game.setIsNextPlayer(false);
                 game.setNumberOfTimesItsStillMyTurn(game.getNumberOfTimesItsStillMyTurn() + 1);
             }

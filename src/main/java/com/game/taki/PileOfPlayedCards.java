@@ -1,13 +1,14 @@
 package com.game.taki;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PileOfPlayedCards {
-    private ArrayList<ICard> playedCards;
+    private CardsCollection playedCards;
     private ICard currentTopCard;
 
     public PileOfPlayedCards(){
-        this.playedCards = new ArrayList<ICard>();
+        this.playedCards = new CardsCollection();
         currentTopCard = null;
     }
 
@@ -24,17 +25,21 @@ public class PileOfPlayedCards {
 
     public void fillEmptyDeck(Deck d){
         if(d.getCards().isEmpty()){
-            d.setCards(playedCards);
+            d.setCards(playedCards.getCardsFromCollection());
             d.shuffle();
-            this.playedCards = new ArrayList<ICard>();
+            this.playedCards = new CardsCollection();
         }
     }
 
-    public ArrayList<ICard> getPlayedCards() {
-        return playedCards;
+    public List<ICard> getPlayedCards() {
+        return playedCards.getCardsFromCollection();
     }
 
-    public void setPlayedCards(ArrayList<ICard> playedCards) {
-        this.playedCards = playedCards;
+    public void setPlayedCards(List<ICard> playedCards) {
+        this.playedCards.setCardsForCollection(playedCards);
+    }
+    public void removeTopCard(){
+        this.playedCards.remove(this.playedCards.getCardsFromCollection().get(this.playedCards.size()-1));
+        this.setCurrentTopCard(this.playedCards.getCardsFromCollection().get(this.playedCards.size()-1));
     }
 }

@@ -2,7 +2,7 @@ package com.game.taki;
 
 import java.util.ArrayList;
 
-public class GameModel {
+public class GameModel extends IGameModel{
     private Deck deck;
     private ArrayList<Player> players;
     private PileOfPlayedCards pile;
@@ -125,5 +125,41 @@ public class GameModel {
 
     public void setIsNextStopped(boolean isNextStopped) {
         this.isNextStopped = isNextStopped;
+    }
+
+    public void DistributeCards(int initialNumberOfCardsInHand){
+        for(int i = 0; i < players.size(); i++){
+            CardsCollection c = new CardsCollection();
+            for(int j=0; j < initialNumberOfCardsInHand; j++){
+                c.add(pile.getCurrentTopCard());
+                pile.removeTopCard();
+            }
+            players.get(i).addToPlayersCollection(c);
+        }
+    }
+
+    @Override
+    public void intializeGame(ArrayList<Player> players, ArrayList<String> colorsInGame, int initialNumberOfCardsInHand) {
+        GameModel regularGame = new GameModel(players, colorsInGame);
+        DistributeCards(initialNumberOfCardsInHand);
+        ICard centralCard = getPile().getCurrentTopCard();
+        this.pile.removeTopCard();
+    }
+
+    @Override
+    public void courseOfGame() {
+        for(int i = 0; i < players.size(); i++){
+            Player p = players.get(i);
+            p.play();
+            if(isWinning(p)){
+                //Enter winning message
+                break;
+            }
+        }
+    }
+
+    @Override
+    public boolean isWinning(Player p) {
+        return p.getPlayerCards().isEmpty() && (p.getNumCardsHeNeedsToDraw() == 0);
     }
 }

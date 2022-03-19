@@ -20,6 +20,14 @@ public class CardsCollection implements Collection<ICard> {
         this.topIndex = cardsList.size();
     }
 
+    public List<ICard> getCardsFromCollection(){
+        return this.cards;
+    }
+
+    public void setCardsForCollection(List<ICard> cards){
+        this.cards = cards;
+    }
+
     @Override
     public int size() {
         return this.cards.size();

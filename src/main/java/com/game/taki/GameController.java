@@ -13,9 +13,39 @@ public class GameController implements IController {
     private Model model;
     private Application view;
     private Stage stage;
-
     @FXML
-    private void initialize() {
+    private Button playPCButton;
+    @FXML
+    private Button playOnlineButton;
+    @FXML
+    private Button settingsButton;
+    @FXML
+    private Button leaderboardButton;
+    @FXML
+    protected EventHandler<ActionEvent> onPlayPCButtonClick = new EventHandler<>() {
+        @Override
+        public void handle(ActionEvent actionEvent) {
+
+        }
+    };
+    @FXML
+    protected EventHandler<ActionEvent> onPlayOnlineButtonClick = new EventHandler<>() {
+        @Override
+        public void handle(ActionEvent actionEvent) {
+
+        }
+    };
+    @FXML
+    protected EventHandler<ActionEvent> onSettingsButtonClick = new EventHandler<>() {
+        @Override
+        public void handle(ActionEvent actionEvent) {
+
+        }
+    };
+
+    @Override
+    public void updateScene() {
+
     }
 
     public void setModel(Model m) {
@@ -26,12 +56,9 @@ public class GameController implements IController {
         this.view = v;
     }
 
-    public void setStage(Stage s) {
-        this.stage = s;
-    }
-
     @Override
-    public void updateScene() {
-
+    public void setStage(Stage stage) {
+        this.stage = stage;
     }
+
 }

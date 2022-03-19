@@ -1,29 +1,31 @@
 package com.game.taki;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Player {
-    private ArrayList<ICard> playerCards;
+    private CardsCollection playerCards;
     private int numCardsHeNeedsToDraw;
-    public Player(ArrayList<ICard> playerCards){
+    public Player(CardsCollection playerCards){
         this.playerCards = playerCards;
         numCardsHeNeedsToDraw = 0;
     }
     public void play(){
 
     }
+    public void addToPlayersCollection(CardsCollection c){
+        playerCards.addAll(c);
+    }
     public void popPlayedCard(ICard card){
-        ArrayList<ICard> newPlayerCards = this.playerCards;
-        newPlayerCards.remove(card);
-        setPlayerCards(newPlayerCards);
+        playerCards.remove(card);
     }
 
-    public ArrayList<ICard> getPlayerCards() {
-        return playerCards;
+    public List<ICard> getPlayerCards() {
+        return playerCards.getCardsFromCollection();
     }
 
-    public void setPlayerCards(ArrayList<ICard> playerCards) {
-        this.playerCards = playerCards;
+    public void setPlayerCards(List<ICard> playerCards) {
+        this.playerCards.setCardsForCollection(playerCards);
     }
 
     public int getNumCardsHeNeedsToDraw() {

@@ -1,13 +1,14 @@
 package com.game.taki;
 import java.util.Collections;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Deck {
-    private ArrayList<ICard> cards;
+    private CardsCollection cards;
     private ArrayList<String> ColorsInGame;
     public Deck(ArrayList<String> ColorsInGame){
         this.ColorsInGame = ColorsInGame;
-        this.cards = new ArrayList<ICard>();
+        this.cards = new CardsCollection();
 
         for (int i = 0; i < ColorsInGame.size(); i++) {
             for(int j =0; j < 2;j++){
@@ -18,6 +19,7 @@ public class Deck {
                 cards.add(new ChangeDirectionCard(new Card("Change-Direction Card", ColorsInGame.get(i))));
                 cards.add(new PlusCard(new Card("Plus Card", ColorsInGame.get(i))));
                 cards.add(new TakiCard(new Card("Taki Card", ColorsInGame.get(i))));
+                cards.add(new DrawTwoCard(new Card("Draw-Two Card", ColorsInGame.get(i))));
             }
         }
         cards.add(new SuperTakiCard(new Card("Super-Taki Card", "Colorful")));
@@ -31,15 +33,17 @@ public class Deck {
     }
 
     public void shuffle() {
-        Collections.shuffle(this.cards);
+        List<ICard> temp = this.cards.getCardsFromCollection();
+        Collections.shuffle(temp);
+        this.cards.setCardsForCollection(temp);
     }
 
-    public ArrayList<ICard> getCards() {
-        return cards;
+    public List<ICard> getCards() {
+        return this.cards.getCardsFromCollection();
     }
 
-    public void setCards(ArrayList<ICard> cards) {
-        this.cards = cards;
+    public void setCards(List<ICard> cards) {
+        this.cards.setCardsForCollection(cards);
     }
 
     public ArrayList<String> getColorsInGame() {
