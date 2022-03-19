@@ -1,12 +1,13 @@
 package com.game.taki;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-public class CardsCollection implements Collection<Card> {
-    private List<Card> cards;
+public class CardsCollection implements Collection<ICard> {
+    private List<ICard> cards;
     private int topIndex;
 
     public CardsCollection() {
@@ -14,7 +15,7 @@ public class CardsCollection implements Collection<Card> {
         this.topIndex = 0;
     }
 
-    public CardsCollection(List<Card> cardsList) {
+    public CardsCollection(List<ICard> cardsList) {
         this.cards = cardsList;
         this.topIndex = cardsList.size();
     }
@@ -45,7 +46,24 @@ public class CardsCollection implements Collection<Card> {
     }
 
     @Override
-    public boolean add(Card o) {
+    public <T> T[] toArray(T[] a) {
+        if (a.length >= this.size()) {
+            a = (T[]) Array.newInstance(a.getClass().getComponentType(), this.size());
+        }
+        return a;
+//            for (int i = 0; i < this.size(); i++) {
+//                a[i] = (T)this.cards.get(i);
+//            }
+//            return a;
+//        } else {
+//            T[] arr = new T[]();
+//
+//        }
+//        return null;
+    }
+
+    @Override
+    public boolean add(ICard o) {
         this.cards.add(o);
         this.topIndex++;
         return true;
@@ -63,7 +81,7 @@ public class CardsCollection implements Collection<Card> {
     @Override
     public boolean addAll(Collection c) {
         for (Object card : c) {
-            this.add((Card) card);
+            this.add((ICard) card);
         }
         return true;
     }
@@ -76,21 +94,32 @@ public class CardsCollection implements Collection<Card> {
 
     @Override
     public boolean retainAll(Collection c) {
+        List<ICard> inputCollection = new ArrayList<>();
+        for (Object card : c) {
+            inputCollection.add((ICard) card);
+        }
+        if (this.cards.retainAll(inputCollection)) {
+            this.topIndex = this.size();
+            return true;
+        }
         return false;
     }
 
     @Override
     public boolean removeAll(Collection c) {
-        return false;
+        for (Object card : c) {
+            this.remove(card);
+        }
+        return true;
     }
 
     @Override
     public boolean containsAll(Collection c) {
-        return false;
-    }
-
-    @Override
-    public Object[] toArray(Object[] a) {
-        return new Object[0];
+        for (Object card : c) {
+            if (!this.contains(card)) {
+                return false;
+            }
+        }
+        return true;
     }
 }
