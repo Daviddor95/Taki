@@ -1,10 +1,6 @@
 package com.game.taki;
 
-import javafx.beans.property.SimpleStringProperty;
-
-import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeMap;
 
 public interface IDatabase {
     boolean isExist(String userName);

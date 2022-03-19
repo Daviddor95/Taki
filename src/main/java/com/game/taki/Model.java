@@ -1,15 +1,8 @@
 package com.game.taki;
 
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.SortedList;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
 
 public class Model {
     private IController controller;
@@ -46,6 +39,7 @@ public class Model {
         this.password = password;
     }
 
+    // startScreen
     public boolean logIn() {
         if (!this.usersDatabase.isExist(this.userName) ||
                 !this.usersDatabase.getPassword(this.userName).equals(this.password)) {
@@ -68,25 +62,36 @@ public class Model {
         }
         return false;
     }
+    // ------
 
+    // leaderboard
     public boolean showLeaderboard() {
-        // this.usersScores = this.usersDatabase.getScores();
         this.controller.updateScene();
         return true;
     }
 
     public ObservableList<TableRecord> getScores() {
         Map<String, Integer> entries = this.usersDatabase.getScores();
-        // ArrayList<Map.Entry<String, Integer>> arrList = new ArrayList<Map.Entry<String, Integer>>(entries);
         ObservableList<TableRecord> table = FXCollections.observableArrayList();
         for (Map.Entry<String, Integer> e : entries.entrySet()) {
             TableRecord tableRecord = new TableRecord(e.getKey(), e.getValue().toString());
             table.add(tableRecord);
         }
         return table;
+    }
+    // ------------
+}
+//    // @@@@@@
+//    public HashMap<String, Integer> getSortedScores() {
+//        Stream<Map.Entry<String, Integer>> stream = this.usersDatabase.getScores().entrySet().stream();
+//        Stream<Map.Entry<String, Integer>> sortedStream = stream.sorted(Map.Entry.<String, Integer>comparingByValue().reversed());
+//        return sortedStream.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (o1, o2) -> o1,
+//                LinkedHashMap::new));
+//    }
 
+// ------
 
-        // SortedList<Map> sortedList = new SortedList<Map>(table);
+// SortedList<Map> sortedList = new SortedList<Map>(table);
 //        ObservableList<Map> table = FXCollections.observableArrayList();
 //        Map scoresMap = new TreeMap<>(this.usersDatabase.getScores());
 //        int len = scoresMap.size();
@@ -98,15 +103,4 @@ public class Model {
 //            table.add(row);
 //            scoresMap.remove(userName);
 //        }
-        // return sortedList;
-    }
-
-//    // @@@@@@
-//    public HashMap<String, Integer> getSortedScores() {
-//        Stream<Map.Entry<String, Integer>> stream = this.usersDatabase.getScores().entrySet().stream();
-//        Stream<Map.Entry<String, Integer>> sortedStream = stream.sorted(Map.Entry.<String, Integer>comparingByValue().reversed());
-//        return sortedStream.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (o1, o2) -> o1,
-//                LinkedHashMap::new));
-//    }
-
-}
+// return sortedList;

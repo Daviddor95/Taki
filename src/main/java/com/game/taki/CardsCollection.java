@@ -36,8 +36,8 @@ public class CardsCollection implements Collection<ICard> {
     }
 
     @Override
-    public Iterator iterator() {
-        return null;
+    public Iterator<ICard> iterator() {
+        return new CardsIterator(this.cards);
     }
 
     @Override
@@ -51,15 +51,6 @@ public class CardsCollection implements Collection<ICard> {
             a = (T[]) Array.newInstance(a.getClass().getComponentType(), this.size());
         }
         return a;
-//            for (int i = 0; i < this.size(); i++) {
-//                a[i] = (T)this.cards.get(i);
-//            }
-//            return a;
-//        } else {
-//            T[] arr = new T[]();
-//
-//        }
-//        return null;
     }
 
     @Override

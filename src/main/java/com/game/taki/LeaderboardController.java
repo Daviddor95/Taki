@@ -2,24 +2,11 @@ package com.game.taki;
 
 import javafx.application.Application;
 import javafx.beans.property.ReadOnlyObjectWrapper;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.SortedList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.SortEvent;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.MapValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.util.Callback;
-import javafx.util.StringConverter;
-
-import java.util.Map;
 
 public class LeaderboardController implements IController {
     private Model model;
