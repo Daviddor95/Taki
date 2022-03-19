@@ -58,4 +58,8 @@ public class SettingsController implements IController {
     public void updateScene() {
 
     }
+    @FXML
+    private void initialize() {
+        this.startGame.setOnAction(this.onStartGameButtonClick);
+    }
 }
