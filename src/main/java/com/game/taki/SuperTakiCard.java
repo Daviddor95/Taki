@@ -11,7 +11,6 @@ public class SuperTakiCard extends TakiCard{
     public void doAction(GameModel game) {
         addedBehaviorForSuperTaki(game);
         decoratedCard.doAction(game);
-        addedBehavior(game);
     }
 
 
