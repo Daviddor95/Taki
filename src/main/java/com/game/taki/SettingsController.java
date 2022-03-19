@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
+import java.io.IOException;
 
 public class SettingsController implements IController {
     private Model model;
@@ -26,12 +27,12 @@ public class SettingsController implements IController {
             model.setNumberOfHandCards(Integer.parseInt(handCards.getValue().toString()));
             Command startGame = new StartGameCommand(model);
             if (startGame.execute()) {
-//                try {
-//
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                    // log message
-//                }
+                try {
+                    new GameView().start(stage);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    // log message
+                }
             } else {
                 // user message
             }

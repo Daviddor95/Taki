@@ -74,6 +74,7 @@ public class MenuController implements IController {
     @FXML
     private void initialize() {
         this.leaderboardButton.setOnAction(this.onLeaderboardButtonClick);
+        this.settingsButton.setOnAction(this.onSettingsButtonClick);
     }
 
     public void setModel(Model m) {
