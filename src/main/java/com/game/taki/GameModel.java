@@ -148,14 +148,19 @@ public class GameModel extends IGameModel{
 
     @Override
     public void courseOfGame() {
-        for(int i = 0; i < players.size(); i++){
-            Player p = players.get(i);
-            p.play();
-            if(isWinning(p)){
-                //Enter winning message
-                break;
+        boolean ok=true;
+        while (ok){
+            for(int i = 0; i < players.size(); i++){
+                Player p = players.get(i);
+                p.play();
+                if(isWinning(p)){
+                    //Enter winning message
+                    ok=false;
+                    break;
+                }
             }
         }
+
     }
 
     @Override
