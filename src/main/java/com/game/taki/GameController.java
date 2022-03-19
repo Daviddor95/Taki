@@ -32,5 +32,6 @@ public class GameController implements IController {
 
     @Override
     public void updateScene() {
+
     }
 }

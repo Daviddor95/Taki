@@ -16,20 +16,6 @@ public class TakiCard extends DecoratedCard{
 
     }
 
-    @Override
-    public boolean isValidAction(ICard current) {
-        return this.decoratedCard.isValidAction(current);
-    }
-
-    @Override
-    public String getName() {
-        return this.decoratedCard.getName();
-    }
-
-    @Override
-    public String getColor() {
-        return this.decoratedCard.getColor();
-    }
 
     protected void addedBehavior(GameModel game) {
         Player currentPlayer = game.getCurrentPlayer();

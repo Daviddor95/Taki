@@ -2,11 +2,12 @@ package com.game.taki;
 
 import java.util.ArrayList;
 
-public class ChangeDirectionCard extends DecoratedCard{
+public class StopCard extends DecoratedCard{
 
-    public ChangeDirectionCard(ICard decoratedCard) {
+    public StopCard(ICard decoratedCard) {
         super(decoratedCard);
     }
+
 
     @Override
     public void doAction(GameModel game) {
@@ -16,6 +17,6 @@ public class ChangeDirectionCard extends DecoratedCard{
     }
 
     protected void addedBehavior(GameModel game) {
-        game.ReverseOrderOfPlayers();
+        game.setIsNextStopped(true);
     }
 }

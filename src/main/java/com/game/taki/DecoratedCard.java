@@ -11,4 +11,19 @@ public abstract class DecoratedCard implements ICard{
     public void doAction(GameModel game) {
         this.decoratedCard.doAction(game);
     }
+
+    @Override
+    public boolean isValidAction(ICard current) {
+        return this.decoratedCard.isValidAction(current);
+    }
+
+    @Override
+    public String getName() {
+        return this.decoratedCard.getName();
+    }
+
+    @Override
+    public String getColor() {
+        return this.decoratedCard.getColor();
+    }
 }
