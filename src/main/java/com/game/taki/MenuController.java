@@ -7,6 +7,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class MenuController implements IController {
     private Model model;
     private Application view;
@@ -37,7 +39,17 @@ public class MenuController implements IController {
     protected EventHandler<ActionEvent> onSettingsButtonClick = new EventHandler<>() {
         @Override
         public void handle(ActionEvent actionEvent) {
-
+            Command showSettings = new SettingsCommand(model);
+            if (showSettings.execute()) {
+                try {
+                    new SettingsView().start(stage);
+                } catch (IOException e) {
+                    // log message
+                    e.printStackTrace();
+                }
+            } else {
+                // user message
+            }
         }
     };
     @FXML

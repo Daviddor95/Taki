@@ -11,6 +11,8 @@ public class Model {
     private String password;
     private boolean isSignedIn;
     private static Model model;
+    private int playersNum;
+    private int handSize;
     public static final String usersColumnKey = "Users";
     public static final String scoresColumnKey = "Scores";
 
@@ -80,6 +82,24 @@ public class Model {
         return table;
     }
     // ------------
+
+    public boolean showSettings() {
+        return true;
+    }
+
+    public boolean startGame() {
+        return true;
+    }
+
+    public void setNumberOfPlayers(int players) {
+        this.playersNum = players;
+    }
+
+    public void setNumberOfHandCards(int numOfCards) {
+        this.handSize = numOfCards;
+    }
+
+
 }
 //    // @@@@@@
 //    public HashMap<String, Integer> getSortedScores() {
