@@ -77,7 +77,7 @@ public class LeaderboardController implements IController {
         this.scores.setSortType(TableColumn.SortType.DESCENDING);
         this.highscore.getSortOrder().add(this.scores);
         this.highscore.sort();
-        this.highscore.refresh();
+        // this.highscore.refresh();
 //        this.stage.show();
     }
 
