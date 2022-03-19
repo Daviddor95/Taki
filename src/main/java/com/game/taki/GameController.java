@@ -6,30 +6,34 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+
+import java.util.ArrayList;
 
 public class GameController implements IController {
     private Model model;
     private Application view;
     private Stage stage;
     @FXML
-    private Button playPCButton;
+    private ImageView pickCardFromDeck;
     @FXML
-    private Button playOnlineButton;
+    private MenuButton chooseColorButton;
     @FXML
-    private Button settingsButton;
+    private ImageView playerCardImages;
+
     @FXML
-    private Button leaderboardButton;
-    @FXML
-    protected EventHandler<ActionEvent> onPlayPCButtonClick = new EventHandler<>() {
+    protected EventHandler<ActionEvent> onPickCardFromDeckClick = new EventHandler<>() {
         @Override
         public void handle(ActionEvent actionEvent) {
 
         }
     };
     @FXML
-    protected EventHandler<ActionEvent> onPlayOnlineButtonClick = new EventHandler<>() {
+    protected EventHandler<ActionEvent> onChooseColorButtonClick = new EventHandler<>() {
         @Override
         public void handle(ActionEvent actionEvent) {
 
@@ -45,6 +49,7 @@ public class GameController implements IController {
 
     @Override
     public void updateScene() {
+
 
     }
 
