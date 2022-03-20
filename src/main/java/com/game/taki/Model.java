@@ -2,6 +2,10 @@ package com.game.taki;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
+import java.io.File;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 public class Model {
@@ -13,6 +17,7 @@ public class Model {
     private static Model model;
     private int playersNum;
     private int handSize;
+    private IGameModel gameModel;
     public static final String usersColumnKey = "Users";
     public static final String scoresColumnKey = "Scores";
 
@@ -99,6 +104,17 @@ public class Model {
         this.handSize = numOfCards;
     }
 
+    public List<ICard> getPlayerHand() {
+        return this.gameModel.getPlayerHand();
+    }
+
+    public String[] getAllCardsNames() {
+        return new String[]{"1B", "1G", "1R", "1Y", "2+B", "2+G", "2+R", "2+Y", "2B", "2G", "2R", "2Y", "3B", "3G",
+                "3R", "3Y", "4B", "4G", "4R", "4Y", "5B", "5G", "5R", "5Y", "6B", "6G", "6R", "6Y", "7B", "7G", "7R",
+                "7Y", "8B", "8G", "8R", "8Y", "9B", "9G", "9R", "9Y", "ChangeColor", "ChangeDirectionB",
+                "ChangeDirectionG", "ChangeDirectionR", "ChangeDirectionY", "PlusB", "PlusG", "PlusR", "PlusY", "StopB",
+                "StopG", "StopR", "StopY", "SuperTaki", "TakiB", "TakiG", "TakiR", "TakiY"};
+    }
 
 }
 //    // @@@@@@

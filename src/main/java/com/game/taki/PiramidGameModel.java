@@ -1,6 +1,7 @@
 package com.game.taki;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PiramidGameModel extends IGameModel{
     @Override
@@ -16,5 +17,10 @@ public class PiramidGameModel extends IGameModel{
     @Override
     public boolean isWinning(Player p) {
         return false;
+    }
+
+    @Override
+    public List<ICard> getPlayerHand() {
+        return null;
     }
 }

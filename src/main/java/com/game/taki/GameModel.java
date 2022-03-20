@@ -1,6 +1,7 @@
 package com.game.taki;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class GameModel extends IGameModel{
     private Deck deck;
@@ -150,9 +151,9 @@ public class GameModel extends IGameModel{
     public void courseOfGame() {
         boolean ok=true;
         while (ok){
-            for(int i = 0; i < players.size(); i++){
+            for (int i = 0; i < players.size(); i++){
                 Player p = players.get(i);
-                p.play();
+                p.play(); // this.pile.getCurrentTopCard()
                 if(isWinning(p)){
                     //Enter winning message
                     ok=false;
@@ -166,5 +167,9 @@ public class GameModel extends IGameModel{
     @Override
     public boolean isWinning(Player p) {
         return p.getPlayerCards().isEmpty() && (p.getNumCardsHeNeedsToDraw() == 0);
+    }
+
+    public List<ICard> getPlayerHand() {
+        return this.getPlayers().get(0).getPlayerCards();
     }
 }

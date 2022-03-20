@@ -6,11 +6,16 @@ import java.util.List;
 public class Player {
     private CardsCollection playerCards;
     private int numCardsHeNeedsToDraw;
+    // private ICard choosenCard;
+
     public Player(CardsCollection playerCards){
         this.playerCards = playerCards;
         numCardsHeNeedsToDraw = 0;
     }
-    public void play(){
+    public void play(){  // ICard topPileCard
+//        if (this.choosenCard.isValidAction(topPileCard)) {
+//            this.popPlayedCard(this.choosenCard);
+//        }
 
     }
     public void addToPlayersCollection(CardsCollection c){
@@ -20,6 +25,9 @@ public class Player {
         playerCards.remove(card);
     }
 
+//    public void chooseCard(ICard c) {
+//        this.choosenCard = c;
+//    }
     public List<ICard> getPlayerCards() {
         return playerCards.getCardsFromCollection();
     }
