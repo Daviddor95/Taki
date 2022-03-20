@@ -24,6 +24,10 @@ public class CardsCollection implements Collection<ICard> {
         return this.cards;
     }
 
+    public ICard getCard(int index) {
+        return this.cards.get(index);
+    }
+
     public void setCardsForCollection(List<ICard> cards){
         this.cards = cards;
     }
