@@ -121,4 +121,12 @@ public class CardsCollection implements Collection<ICard> {
         }
         return true;
     }
+
+    public int getTopIndex() {
+        return topIndex;
+    }
+
+    public void setTopIndex(int topIndex) {
+        this.topIndex = topIndex;
+    }
 }

@@ -6,11 +6,19 @@ import java.util.List;
 public class Player {
     private CardsCollection playerCards;
     private int numCardsHeNeedsToDraw;
+    private boolean isRealPerson;
+    private AIStrategy playingStrategy;
     // private ICard choosenCard;
 
-    public Player(CardsCollection playerCards){
+    public Player(CardsCollection playerCards, boolean isRealPerson){
         this.playerCards = playerCards;
         numCardsHeNeedsToDraw = 0;
+        this.isRealPerson = isRealPerson;
+        if(isRealPerson){
+            playingStrategy = new RealPersonStrategy();
+        } else{
+            playingStrategy = new ComputerSimpleStrategy();
+        }
     }
     public void play(){  // ICard topPileCard
 //        if (this.choosenCard.isValidAction(topPileCard)) {
@@ -32,6 +40,10 @@ public class Player {
         return playerCards.getCardsFromCollection();
     }
 
+    public CardsCollection getCardsCollect() {
+        return playerCards;
+    }
+
     public void setPlayerCards(List<ICard> playerCards) {
         this.playerCards.setCardsForCollection(playerCards);
     }
@@ -42,5 +54,17 @@ public class Player {
 
     public void setNumCardsHeNeedsToDraw(int numCardsHeNeedsToDraw) {
         this.numCardsHeNeedsToDraw = numCardsHeNeedsToDraw;
+    }
+
+    public AIStrategy getPlayingStrategy() {
+        return playingStrategy;
+    }
+
+    public boolean isRealPerson() {
+        return isRealPerson;
+    }
+
+    public void setRealPerson(boolean realPerson) {
+        isRealPerson = realPerson;
     }
 }

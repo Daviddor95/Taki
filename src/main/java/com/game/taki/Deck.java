@@ -41,6 +41,9 @@ public class Deck {
     public List<ICard> getCards() {
         return this.cards.getCardsFromCollection();
     }
+    public CardsCollection getCardsCollect() {
+        return this.cards;
+    }
 
     public void setCards(List<ICard> cards) {
         this.cards.setCardsForCollection(cards);
@@ -52,5 +55,9 @@ public class Deck {
 
     public void setColorsInGame(ArrayList<String> colorsInGame) {
         ColorsInGame = colorsInGame;
+    }
+
+    public void removeTopCardInDeck(){
+        cards.remove(cards.getCardsFromCollection().get(cards.getTopIndex()));
     }
 }
