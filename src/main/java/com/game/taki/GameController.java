@@ -67,15 +67,31 @@ public class GameController implements IController {
             ICard card;
             if (isNumber) {
                 card = new Card(name, color);
-            } else if (color.equals("i")) {
-//                card = new SuperTakiCard()
-//                {
-//                    switch (nameWithoutColor) {
-//                        case "2+":
-//                            card = new DrawTwoCard(new Card("2+", color))
-//                    }
-//                }
+            } else {
+                switch (nameWithoutColor) {
+                    case "2+":
+                        card = new DrawTwoCard(new Card("2+", color));
+                        break;
+                    case "ChangeColor":
+                        card = new ChangeColorCard(new Card("ChangeColor", color));
+                        break;
+                    case "ChangeDirection":
+                        card = new ChangeDirectionCard(new Card("ChangeDirection", color));
+                        break;
+                    case "Plus":
+                        card = new PlusCard(new Card("Plus", color));
+                        break;
+                    case "Stop":
+                        card = new StopCard(new Card("Stop", color));
+                        break;
+                    case "SuperTaki":
+                        card = new SuperTakiCard(new Card("SuperTaki", color));
+                        break;
+                    case "Taki":
+                        card = new TakiCard(new Card("Taki", color));
+                }
             }
+            // model.setCardOnPile(card);
             // if (String.cardName[0])
             // ICard card = new Card()
         }

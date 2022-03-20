@@ -15,20 +15,20 @@ public class Deck {
                 for (int num = 1; num < 10; num++) {
                     cards.add(new Card(String.valueOf(num), ColorsInGame.get(i)));
                 }
-                cards.add(new StopCard(new Card("Stop Card", ColorsInGame.get(i))));
-                cards.add(new ChangeDirectionCard(new Card("Change-Direction Card", ColorsInGame.get(i))));
-                cards.add(new PlusCard(new Card("Plus Card", ColorsInGame.get(i))));
-                cards.add(new TakiCard(new Card("Taki Card", ColorsInGame.get(i))));
-                cards.add(new DrawTwoCard(new Card("Draw-Two Card", ColorsInGame.get(i))));
+                cards.add(new StopCard(new Card("Stop", ColorsInGame.get(i))));
+                cards.add(new ChangeDirectionCard(new Card("ChangeDirection", ColorsInGame.get(i))));
+                cards.add(new PlusCard(new Card("Plus", ColorsInGame.get(i))));
+                cards.add(new TakiCard(new Card("Taki", ColorsInGame.get(i))));
+                cards.add(new DrawTwoCard(new Card("2+", ColorsInGame.get(i))));
             }
         }
-        cards.add(new SuperTakiCard(new Card("Super-Taki Card", "Colorful")));
-        cards.add(new SuperTakiCard(new Card("Super-Taki Card", "Colorful")));
+        cards.add(new SuperTakiCard(new Card("SuperTaki", "C")));
+        cards.add(new SuperTakiCard(new Card("SuperTaki", "C")));
 
-        cards.add(new ChangeColorCard(new Card("Change-Color Card", "Colorful")));
-        cards.add(new ChangeColorCard(new Card("Change-Color Card", "Colorful")));
-        cards.add(new ChangeColorCard(new Card("Change-Color Card", "Colorful")));
-        cards.add(new ChangeColorCard(new Card("Change-Color Card", "Colorful")));
+        cards.add(new ChangeColorCard(new Card("ChangeColor", "C")));
+        cards.add(new ChangeColorCard(new Card("ChangeColor", "C")));
+        cards.add(new ChangeColorCard(new Card("ChangeColor", "C")));
+        cards.add(new ChangeColorCard(new Card("ChangeColor", "C")));
         this.shuffle();
     }
 

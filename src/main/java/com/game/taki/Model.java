@@ -111,9 +111,9 @@ public class Model {
     public String[] getAllCardsNames() {
         return new String[]{"1B", "1G", "1R", "1Y", "2+B", "2+G", "2+R", "2+Y", "2B", "2G", "2R", "2Y", "3B", "3G",
                 "3R", "3Y", "4B", "4G", "4R", "4Y", "5B", "5G", "5R", "5Y", "6B", "6G", "6R", "6Y", "7B", "7G", "7R",
-                "7Y", "8B", "8G", "8R", "8Y", "9B", "9G", "9R", "9Y", "ChangeColor", "ChangeDirectionB",
+                "7Y", "8B", "8G", "8R", "8Y", "9B", "9G", "9R", "9Y", "ChangeColorC", "ChangeDirectionB",
                 "ChangeDirectionG", "ChangeDirectionR", "ChangeDirectionY", "PlusB", "PlusG", "PlusR", "PlusY", "StopB",
-                "StopG", "StopR", "StopY", "SuperTaki", "TakiB", "TakiG", "TakiR", "TakiY"};
+                "StopG", "StopR", "StopY", "SuperTakiC", "TakiB", "TakiG", "TakiR", "TakiY"};
     }
 
 }
