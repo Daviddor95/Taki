@@ -46,7 +46,36 @@ public class GameController implements IController {
         public void handle(MouseEvent actionEvent) {
             // handList.get @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
             ImageView imageCard = (ImageView) actionEvent.getSource();
-            String cardName = imageCard.getId();
+            String cardName = imageCard.getId(), color = cardName.substring(cardName.length() - 1);
+            String nameWithoutColor = cardName.substring(0, cardName.length() - 1), name = "";
+            int numberCard;
+            boolean isNumber;
+            try {
+                numberCard = Integer.parseInt(cardName.substring(0, 1));
+                if (cardName.charAt(1) != '+') {
+                    name = cardName.substring(0, 1);
+                    color = cardName.substring(1, 2);
+                    isNumber = true;
+                } else {
+                    name = cardName.substring(0, 2);
+                    color = cardName.substring(2, 3);
+                    isNumber = false;
+                }
+            } catch(NumberFormatException e){
+                isNumber = false;
+            }
+            ICard card;
+            if (isNumber) {
+                card = new Card(name, color);
+            } else if (color.equals("i")) {
+//                card = new SuperTakiCard()
+//                {
+//                    switch (nameWithoutColor) {
+//                        case "2+":
+//                            card = new DrawTwoCard(new Card("2+", color))
+//                    }
+//                }
+            }
             // if (String.cardName[0])
             // ICard card = new Card()
         }
