@@ -17,7 +17,7 @@ public class Model {
     private static Model model;
     private int playersNum;
     private int handSize;
-    private IGameModel gameModel;
+    private GameModel gameModel;
     public static final String usersColumnKey = "Users";
     public static final String scoresColumnKey = "Scores";
 
@@ -114,6 +114,11 @@ public class Model {
                 "7Y", "8B", "8G", "8R", "8Y", "9B", "9G", "9R", "9Y", "ChangeColorC", "ChangeDirectionB",
                 "ChangeDirectionG", "ChangeDirectionR", "ChangeDirectionY", "PlusB", "PlusG", "PlusR", "PlusY", "StopB",
                 "StopG", "StopR", "StopY", "SuperTakiC", "TakiB", "TakiG", "TakiR", "TakiY"};
+    }
+
+    public void doCardAction(ICard card) {
+        this.gameModel.setChoosenCardInThisTurn(card);
+        card.doAction(this.gameModel);
     }
 
 }

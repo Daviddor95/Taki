@@ -11,6 +11,8 @@ public class GameModel extends IGameModel{
     private boolean isNextPlayer;
     private int numberOfTimesItsStillMyTurn;
     private boolean isNextStopped;
+    private ICard choosenCardInThisTurn;
+    private int direction = 1;
 
     public GameModel(ArrayList<Player> players, ArrayList<String> colorsInGame){
         this.deck = new Deck(colorsInGame);
@@ -160,18 +162,51 @@ public class GameModel extends IGameModel{
 
     @Override
     public void courseOfGame() {
-        boolean ok=true;
-        while (ok){
-            for (int i = 0; i < players.size(); i++){
-                Player p = players.get(i);
-                p.getPlayingStrategy().doOperation(p, this.pile.getCurrentTopCard(), this); // this.pile.getCurrentTopCard()
-                if(isWinning(p)){
-                    //Enter winning message
-                    ok=false;
-                    break;
-                }
+        Player me = this.players.get(0);
+        me.getPlayingStrategy().doOperation(me, this.pile.getCurrentTopCard(), this);
+        if(isWinning(me)){
+            //Enter winning message
+            return;
+        }
+        boolean person = false;
+        // int k =this.direction
+        for (int i = 1; !person; i += 1) {
+            Player p = this.players.get(i);
+            p.getPlayingStrategy().doOperation(p, this.pile.getCurrentTopCard(), this);
+            // steps = 1, -1, 0, 2
+            if(isWinning(p)){
+                //Enter winning message
+                return;
+            }
+            if (i == 0) {
+                person = true;
             }
         }
+
+
+//        while (!person) {
+//            p = p.
+//            if(isWinning(p)){
+//                    //Enter winning message
+//                    ok=false;
+//                    break;
+//            }
+//            person =true;
+//        }
+//        boolean ok=true;
+//        while (ok){
+//            for (int i = 0; i < players.size(); i++){
+//                Player p = players.get(i);
+//                while
+//                if (computer)
+//                    p.getPlayingStrategy().doOperation(p, this.pile.getCurrentTopCard(), this); // this.pile.getCurrentTopCard()
+//                if(isWinning(p)){
+//                    //Enter winning message
+//                    ok=false;
+//                    break;
+//                }
+//            }
+//        }
 
     }
 
@@ -182,5 +217,13 @@ public class GameModel extends IGameModel{
 
     public List<ICard> getPlayerHand() {
         return this.getPlayers().get(0).getPlayerCards();
+    }
+
+    public ICard getChoosenCardInThisTurn() {
+        return this.choosenCardInThisTurn;
+    }
+
+    public void setChoosenCardInThisTurn(ICard choosenCardInThisTurn) {
+        this.choosenCardInThisTurn = choosenCardInThisTurn;
     }
 }

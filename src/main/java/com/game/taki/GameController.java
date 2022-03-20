@@ -44,7 +44,6 @@ public class GameController implements IController {
     protected EventHandler<MouseEvent> onPickCardFromHandClick = new EventHandler<>() {
         @Override
         public void handle(MouseEvent actionEvent) {
-            // handList.get @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
             ImageView imageCard = (ImageView) actionEvent.getSource();
             String cardName = imageCard.getId(), color = cardName.substring(cardName.length() - 1);
             String nameWithoutColor = cardName.substring(0, cardName.length() - 1), name = "";
@@ -89,9 +88,13 @@ public class GameController implements IController {
                         break;
                     case "Taki":
                         card = new TakiCard(new Card("Taki", color));
+                    default:
+                        card = null;
                 }
             }
-            // model.setCardOnPile(card);
+            assert card != null;
+            model.doCardAction(card);
+            // card.doAction(model.getGame());
             // if (String.cardName[0])
             // ICard card = new Card()
         }
