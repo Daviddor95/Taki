@@ -141,6 +141,13 @@ public class GameModel extends IGameModel{
         }
     }
 
+    public void takingCardFromDeck(Player p){
+        CardsCollection c1 = new CardsCollection();
+        c1.add(this.deck.getCardsCollect().getCard(this.deck.getCardsCollect().getTopIndex()));
+        p.addToPlayersCollection(c1);
+        this.deck.removeTopCardInDeck();
+    }
+
     @Override
     public void intializeGame(ArrayList<Player> players, ArrayList<String> colorsInGame, int initialNumberOfCardsInHand) {
         GameModel regularGame = new GameModel(players, colorsInGame);

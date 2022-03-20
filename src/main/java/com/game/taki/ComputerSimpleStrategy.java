@@ -18,8 +18,8 @@ public class ComputerSimpleStrategy implements AIStrategy{
             int x = random.nextInt(c.size());
             c.getCard(x).doAction(game);
         }else{
-                //game.setDeck(game.);
-           // p.addToPlayersCollection();
+           game.takingCardFromDeck(p);
+
         }
 
     }
