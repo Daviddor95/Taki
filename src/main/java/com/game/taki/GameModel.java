@@ -132,8 +132,10 @@ public class GameModel extends IGameModel{
         for(int i = 0; i < players.size(); i++){
             CardsCollection c = new CardsCollection();
             for(int j=0; j < initialNumberOfCardsInHand; j++){
-                c.add(pile.getCurrentTopCard());
-                pile.removeTopCard();
+                //c.add(pile.getCurrentTopCard());
+                //pile.removeTopCard();
+                c.add(deck.getCards().get(deck.getCardsCollect().getTopIndex()));
+                deck.removeTopCardInDeck();
             }
             players.get(i).addToPlayersCollection(c);
         }
@@ -143,8 +145,10 @@ public class GameModel extends IGameModel{
     public void intializeGame(ArrayList<Player> players, ArrayList<String> colorsInGame, int initialNumberOfCardsInHand) {
         GameModel regularGame = new GameModel(players, colorsInGame);
         DistributeCards(initialNumberOfCardsInHand);
-        ICard centralCard = getPile().getCurrentTopCard();
-        this.pile.removeTopCard();
+        ICard centralCard = getDeck().getCards().get(getDeck().getCardsCollect().getTopIndex());
+        this.deck.removeTopCardInDeck();
+        this.pile.addToPlayedCards(centralCard);
+        this.pile.setCurrentTopCard(centralCard);
     }
 
     @Override
@@ -153,7 +157,7 @@ public class GameModel extends IGameModel{
         while (ok){
             for (int i = 0; i < players.size(); i++){
                 Player p = players.get(i);
-                p.play(); // this.pile.getCurrentTopCard()
+                p.getPlayingStrategy().doOperation(p, this.pile.getCurrentTopCard(), this); // this.pile.getCurrentTopCard()
                 if(isWinning(p)){
                     //Enter winning message
                     ok=false;
