@@ -27,7 +27,8 @@ public class DrawTwoCard extends DecoratedCard{
         players.set(game.getNextPlayerIndex(), p);
 
         Player pCurrent = game.getCurrentPlayer();
-        p.setNumCardsHeNeedsToDraw(0);
+        pCurrent.setNumCardsHeNeedsToDraw(0);
         players.set(game.getCurrentPlayerIndex(), pCurrent);
+        game.setPlayers(players);
     }
 }
