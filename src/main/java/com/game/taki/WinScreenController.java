@@ -25,6 +25,5 @@ public class WinScreenController implements IController {
 
     @Override
     public void updateScene() {
-
     }
 }

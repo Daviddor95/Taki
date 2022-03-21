@@ -1,7 +1,5 @@
 package com.game.taki;
 
-import java.util.Random;
-
 public class ComputerDiffStrategy implements AIStrategy {
 
     @Override
@@ -14,17 +12,15 @@ public class ComputerDiffStrategy implements AIStrategy {
             }
         }else{
             for(ICard card : playersCards){
-                if (card.isValidAction(current)){
+                if (card.isValidAction(current, game)){
                     card.doAction(game);
                     ok = true;
                     break;
                 }
             }
-
             if(!ok){
                 game.takingCardFromDeck(p);
             }
         }
-
     }
 }

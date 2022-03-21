@@ -1,22 +1,20 @@
 package com.game.taki;
 
-public class RealPersonStrategy implements AIStrategy{
+public class RealPersonStrategy implements AIStrategy {
     @Override
     public void doOperation(Player p, ICard current, GameModel game) {
-        if(p.getNumCardsHeNeedsToDraw()>0) {
+        if (p.getNumCardsHeNeedsToDraw() > 0) {
             for (int k = 0; k < p.getNumCardsHeNeedsToDraw(); k++) {
                 game.takingCardFromDeck(p);
             }
-        }else{
+        } else {
             ICard card = game.getChoosenCardInThisTurn();
-            if(card.isValidAction(current)){
+            if(card.isValidAction(current, game)) {
                 card.doAction(game);
             }
-            else{
+            else {
                 game.takingCardFromDeck(p);
             }
         }
-
-
     }
 }

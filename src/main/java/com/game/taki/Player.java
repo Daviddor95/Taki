@@ -26,8 +26,12 @@ public class Player {
         playerCards.addAll(c);
     }
     public void popPlayedCard(ICard card){
-        System.out.println(this.playerCards.contains(card));
-        playerCards.remove(card);
+        for (ICard c : this.playerCards) {
+            if (c.getName().equals(card.getName()) && c.getColor().equals(card.getColor())) {
+                this.playerCards.remove(c);
+                return;
+            }
+        }
     }
 
     public CardsCollection getCardsCollect() {
