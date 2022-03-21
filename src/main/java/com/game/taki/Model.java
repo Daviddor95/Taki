@@ -141,4 +141,8 @@ public class Model {
     public ICard getTopPileCard() {
         return gameModel.getTopPileCard();
     }
+
+    public void RemoveTopCardFromDeck(){
+
+    }
 }

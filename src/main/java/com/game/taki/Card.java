@@ -27,8 +27,8 @@ public class Card implements ICard {
 
     public boolean isValidAction(ICard current){
         //return (current.getColor().equals(this.color) || ((current.getName().equals(this.name)) && isNumeric(this.name)));
-        if (current.getName().equals("2+")){
-            if(this.name.equals("2+")){
+        if (current.getName().startsWith("2+")){
+            if(this.name.startsWith("2+")){
                 return true;
             } else{
                 return false;
