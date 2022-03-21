@@ -57,6 +57,7 @@ public class Deck {
         ColorsInGame = colorsInGame;
     }
 
+    //TO CHECK FOR MYSELF
     public void removeTopCardInDeck(){
         cards.remove(cards.getCardsFromCollection().get(cards.getTopIndex()));
     }
