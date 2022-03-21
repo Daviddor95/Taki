@@ -3,7 +3,6 @@ package com.game.taki;
 import java.util.Random;
 
 public class ComputerSimpleStrategy implements AIStrategy{
-    //private boolean isMyTurnStill = true;
 
     @Override
     public void doOperation(Player p, ICard current, GameModel game) {
@@ -18,7 +17,7 @@ public class ComputerSimpleStrategy implements AIStrategy{
             Random random = new Random();
             c = new CardsCollection();
             for (ICard card : playersCards) {
-                if (card.isValidAction(current)) {
+                if (card.isValidAction(current, game)) {
                     c.add(card);
                 }
             }
@@ -29,6 +28,7 @@ public class ComputerSimpleStrategy implements AIStrategy{
                 while(game.getNumberOfTimesItsStillMyTurn()>0 && !c.isEmpty()){
                     x = random.nextInt(c.size());
                     c.getCard(x).doAction(game);
+                    c.remove(c.getCard(x));
                     game.setNumberOfTimesItsStillMyTurn(game.getNumberOfTimesItsStillMyTurn() - 1);
                 }
                 if(game.getNumberOfTimesItsStillMyTurn()>0 && c.isEmpty()) {
@@ -39,9 +39,5 @@ public class ComputerSimpleStrategy implements AIStrategy{
                 game.takingCardFromDeck(p);
             }
         }
-
     }
-
-
-
 }

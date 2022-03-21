@@ -120,7 +120,7 @@ public class GameController implements IController {
             e.printStackTrace();
         }
         this.handList.setDisable(false);
-        List<ICard> hand = this.model.getPlayerHand();
+        CardsCollection hand = this.model.getPlayerHand();
         List<String> handString = new ArrayList<>();
         for (ICard c : hand) {
             handString.add(c.getName() + c.getColor());

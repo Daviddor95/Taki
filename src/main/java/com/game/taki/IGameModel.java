@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class IGameModel {
-    public abstract void intializeGame();
+    public abstract void initializeGame();
     public abstract void gameRound();
     public abstract boolean isWinning(Player p);
-    public abstract List<ICard> getPlayerHand();
+    public abstract CardsCollection getPlayerHand();
 }

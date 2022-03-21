@@ -1,6 +1,5 @@
 package com.game.taki;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
@@ -8,9 +7,8 @@ public class Player {
     private int numCardsHeNeedsToDraw;
     private boolean isRealPerson;
     private AIStrategy playingStrategy;
-    // private ICard choosenCard;
 
-    public Player(boolean isRealPerson) {  // CardsCollection playerCards,
+    public Player(boolean isRealPerson) {
         this.playerCards = new CardsCollection();
         numCardsHeNeedsToDraw = 0;
         this.isRealPerson = isRealPerson;
@@ -20,12 +18,10 @@ public class Player {
             playingStrategy = new ComputerSimpleStrategy();
         }
     }
-    public void play(){  // ICard topPileCard
-//        if (this.choosenCard.isValidAction(topPileCard)) {
-//            this.popPlayedCard(this.choosenCard);
-//        }
 
+    public void play(){
     }
+
     public void addToPlayersCollection(CardsCollection c){
         playerCards.addAll(c);
     }
@@ -34,19 +30,12 @@ public class Player {
         playerCards.remove(card);
     }
 
-//    public void chooseCard(ICard c) {
-//        this.choosenCard = c;
-//    }
-    public List<ICard> getPlayerCards() {
-        return playerCards.getCardsFromCollection();
-    }
-
     public CardsCollection getCardsCollect() {
         return playerCards;
     }
 
     public void setPlayerCards(List<ICard> playerCards) {
-        this.playerCards.setCardsForCollection(playerCards);
+        this.playerCards = new CardsCollection(playerCards);
     }
 
     public int getNumCardsHeNeedsToDraw() {

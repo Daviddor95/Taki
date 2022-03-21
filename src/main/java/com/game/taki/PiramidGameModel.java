@@ -5,7 +5,7 @@ import java.util.List;
 
 public class PiramidGameModel extends IGameModel{
     @Override
-    public void intializeGame() {
+    public void initializeGame() {
 
     }
 
@@ -20,7 +20,7 @@ public class PiramidGameModel extends IGameModel{
     }
 
     @Override
-    public List<ICard> getPlayerHand() {
+    public CardsCollection getPlayerHand() {
         return null;
     }
 }

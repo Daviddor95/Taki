@@ -102,10 +102,10 @@ public class Model {
     }
 
     public void initializeGame() {
-        gameModel.intializeGame();
+        gameModel.initializeGame();
     }
 
-    public List<ICard> getPlayerHand() {
+    public CardsCollection getPlayerHand() {
         return gameModel.getPlayerHand();
     }
 

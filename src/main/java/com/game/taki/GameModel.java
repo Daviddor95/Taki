@@ -1,7 +1,6 @@
 package com.game.taki;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static java.lang.Thread.sleep;
 
@@ -175,7 +174,7 @@ public class GameModel extends IGameModel{
     }
 
     @Override
-    public void intializeGame() {
+    public void initializeGame() {
         this.players.add(new Player(true));
         for (int i = 0; i < this.numberOfPlayers - 1; i++) {
             this.players.add(new Player(false));
@@ -214,6 +213,7 @@ public class GameModel extends IGameModel{
     @Override
     public void gameRound() {
         Player me = this.players.get(indexOfPerson);
+        currentPlayerIndex = indexOfPerson;
         MakeAMove(me);
         // this.controller.updateScene();
         if(numberOfTimesItsStillMyTurn >0){
@@ -249,6 +249,7 @@ public class GameModel extends IGameModel{
                 e.printStackTrace();
             }
             Player p = this.players.get(i);
+            currentPlayerIndex = i;
             MakeAMove(p);
             if(wasReversed && indexOfPerson == 0 && players.size() == 3){
                 indexOfPerson = 2;
@@ -297,15 +298,15 @@ public class GameModel extends IGameModel{
 
     @Override
     public boolean isWinning(Player p) {
-        return p.getPlayerCards().isEmpty() && (p.getNumCardsHeNeedsToDraw() == 0);
+        return p.getCardsCollect().isEmpty() && (p.getNumCardsHeNeedsToDraw() == 0);
     }
 
     public boolean isWon() {
         return this.isWon;
     }
 
-    public List<ICard> getPlayerHand() {
-        return this.getPlayers().get(this.indexOfPerson).getPlayerCards();
+    public CardsCollection getPlayerHand() {
+        return this.getPlayers().get(this.indexOfPerson).getCardsCollect();
     }
 
     public ICard getChoosenCardInThisTurn() {
