@@ -23,12 +23,13 @@ public class SettingsController implements IController {
     protected EventHandler<ActionEvent> onStartGameButtonClick = new EventHandler<>() {
         @Override
         public void handle(ActionEvent actionEvent) {
-            model.setNumberOfPlayers(Integer.parseInt(playersNum.getValue().toString()));
-            model.setNumberOfHandCards(Integer.parseInt(handCards.getValue().toString()));
+            model.setNumberOfPlayers(Integer.parseInt(playersNum.getValue()));
+            model.setNumberOfHandCards(Integer.parseInt(handCards.getValue()));
             Command startGame = new StartGameCommand(model);
             if (startGame.execute()) {
                 try {
                     new GameView().start(stage);
+                    model.initializeGame();
                 } catch (IOException e) {
                     e.printStackTrace();
                     // log message

@@ -3,6 +3,8 @@ package com.game.taki;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.Thread.sleep;
+
 public class GameModel extends IGameModel{
     private Deck deck;
     private ArrayList<Player> players;
@@ -15,15 +17,27 @@ public class GameModel extends IGameModel{
     private int direction = 1;
     private int indexOfPerson = 0;
     private boolean wasReversed;
+    private ArrayList<String> colors;
+    private IController controller;
+    private boolean isWon;
+    private int numberOfPlayers;
+    private int handSize;
 
-    public GameModel(ArrayList<Player> players, ArrayList<String> colorsInGame){
-        this.deck = new Deck(colorsInGame);
-        this.players = players;
+    public GameModel(IController c){
+        this.colors = new ArrayList<>();
+        this.colors.add("R");
+        this.colors.add("G");
+        this.colors.add("B");
+        this.colors.add("Y");
+        this.deck = new Deck(this.colors);
+        this.players = new ArrayList<>();
         this.pile = new PileOfPlayedCards();
         this.isNextPlayer = false;
         this.numberOfTimesItsStillMyTurn = 0;
         this.isNextStopped = false;
         this.wasReversed = false;
+        this.controller = c;
+        this.isWon = false;
 
     }
     public Player getCurrentPlayer(){
@@ -155,19 +169,25 @@ public class GameModel extends IGameModel{
     }
 
     @Override
-    public void intializeGame(ArrayList<Player> players, ArrayList<String> colorsInGame, int initialNumberOfCardsInHand) {
-        GameModel regularGame = new GameModel(players, colorsInGame);
-        DistributeCards(initialNumberOfCardsInHand);
+    public void intializeGame() {
+        // GameModel regularGame = new GameModel(players, colorsInGame);
+        this.players.add(new Player(true));
+        for (int i = 0; i < this.numberOfPlayers - 1; i++) {
+            this.players.add(new Player(false));
+        }
+        DistributeCards(this.handSize);
         ICard centralCard = getDeck().getCards().get(getDeck().getCardsCollect().getTopIndex());
         this.deck.removeTopCardInDeck();
         this.pile.addToPlayedCards(centralCard);
         this.pile.setCurrentTopCard(centralCard);
+        this.controller.updateScene();
     }
 
     public void MakeAMove(Player p ){
         if(!this.isNextStopped){
             p.getPlayingStrategy().doOperation(p, this.pile.getCurrentTopCard(), this);
             if(isWinning(p)){
+                this.isWon = true;
                 //Enter winning message
                 return;
             }
@@ -176,19 +196,23 @@ public class GameModel extends IGameModel{
         }
     }
 
+    public void setNumberOfPlayers(int players) {
+        this.numberOfPlayers = players;
+    }
 
+    public void setNumberOfHandCards(int numOfCards) {
+        this.handSize = numOfCards;
+    }
 
     @Override
     public void courseOfGame() {
         Player me = this.players.get(indexOfPerson);
-
         MakeAMove(me);
         if(numberOfTimesItsStillMyTurn >0){
             setNumberOfTimesItsStillMyTurn(numberOfTimesItsStillMyTurn - 1);
             return;
         }
         int i = 1;
-
         //if first card is change direction card
         if(wasReversed && indexOfPerson == 0 && players.size() == 3){
             indexOfPerson = 2;
@@ -207,14 +231,15 @@ public class GameModel extends IGameModel{
             wasReversed = false;
             i = 0;
         }
-
-        int j = 0;
         boolean person = false;
-        // int k =this.direction
-        for (; !person;) {
+        while(!person) {
+            try {
+                sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             Player p = this.players.get(i);
             MakeAMove(p);
-
             if(wasReversed && indexOfPerson == 0 && players.size() == 3){
                 indexOfPerson = 2;
             }
@@ -227,7 +252,6 @@ public class GameModel extends IGameModel{
             if(wasReversed && indexOfPerson == 3 && players.size() == 4){
                 indexOfPerson = 0;
             }
-
            if(wasReversed && players.size() == 3){
                if(i==2){
                    i = 0;
@@ -236,7 +260,6 @@ public class GameModel extends IGameModel{
                }
                wasReversed = false;
            }
-
             if(wasReversed && players.size() == 4){
                 if(i==3){
                     i = 0;
@@ -249,8 +272,6 @@ public class GameModel extends IGameModel{
                 }
                 wasReversed = false;
             }
-
-
             if(this.numberOfTimesItsStillMyTurn == 0){
                 i++;
             }
@@ -262,9 +283,6 @@ public class GameModel extends IGameModel{
                 person = true;
             }
         }
-
-
-
 //        while (!person) {
 //            p = p.
 //            if(isWinning(p)){
@@ -288,7 +306,6 @@ public class GameModel extends IGameModel{
 //                }
 //            }
 //        }
-
     }
 
     @Override
@@ -296,8 +313,12 @@ public class GameModel extends IGameModel{
         return p.getPlayerCards().isEmpty() && (p.getNumCardsHeNeedsToDraw() == 0);
     }
 
+    public boolean isWon() {
+        return this.isWon;
+    }
+
     public List<ICard> getPlayerHand() {
-        return this.getPlayers().get(0).getPlayerCards();
+        return this.getPlayers().get(this.indexOfPerson).getPlayerCards();
     }
 
     public ICard getChoosenCardInThisTurn() {

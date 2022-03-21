@@ -21,7 +21,7 @@ public class Model {
     private Model() {
         this.usersDatabase = new Database();
         this.isSignedIn = false;
-        // this.gameModel = new GameModel();
+        this.gameModel = new GameModel(this.controller);
     }
 
     public static Model getModel(IController c) {
@@ -95,11 +95,15 @@ public class Model {
     }
 
     public void setNumberOfPlayers(int players) {
-        this.playersNum = players;
+        this.gameModel.setNumberOfPlayers(players);
     }
 
     public void setNumberOfHandCards(int numOfCards) {
-        this.handSize = numOfCards;
+        this.gameModel.setNumberOfHandCards(numOfCards);
+    }
+
+    public void initializeGame() {
+        this.gameModel.intializeGame();
     }
 
     public List<ICard> getPlayerHand() {
@@ -128,7 +132,7 @@ public class Model {
     }
 
     public boolean isWon() {
-        return true; // this.gameModel.isWon();
+        return this.gameModel.isWon();
     }
 
     public boolean leaderboardBack() {

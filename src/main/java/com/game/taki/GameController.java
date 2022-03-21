@@ -101,11 +101,11 @@ public class GameController implements IController {
         List<ICard> hand = this.model.getPlayerHand();
         List<String> handString = new ArrayList<>();
         for (ICard c : hand) {
-            handString.add(c.getName() + c.getColor());
+            handString.add(c.getName() + c.getColor() + ".jpg");
         }
         ObservableList<String> observableHand = FXCollections.observableArrayList(handString);
-        this.handList.setItems(observableHand);
-        this.handList.setCellFactory(arg -> new ListCell<String>() {
+
+        this.handList.setCellFactory(arg -> new ListCell<>() {
             private ImageView img = new ImageView();
             @Override
             public void updateItem(String cardName, boolean isEmpty) {
@@ -126,6 +126,7 @@ public class GameController implements IController {
                 }
             }
         });
+        this.handList.setItems(observableHand);
     }
 
     public void setModel(Model m) {

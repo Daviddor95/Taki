@@ -10,8 +10,8 @@ public class Player {
     private AIStrategy playingStrategy;
     // private ICard choosenCard;
 
-    public Player(CardsCollection playerCards, boolean isRealPerson){
-        this.playerCards = playerCards;
+    public Player(boolean isRealPerson) {  // CardsCollection playerCards,
+        this.playerCards = new CardsCollection();
         numCardsHeNeedsToDraw = 0;
         this.isRealPerson = isRealPerson;
         if(isRealPerson){
