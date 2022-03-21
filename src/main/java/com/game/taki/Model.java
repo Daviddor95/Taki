@@ -11,17 +11,12 @@ public class Model {
     private String userName;
     private String password;
     private boolean isSignedIn;
-    private int playersNum;
-    private int handSize;
     private static GameModel gameModel;
     private static Model model;
-    public static final String usersColumnKey = "Users";
-    public static final String scoresColumnKey = "Scores";
 
     private Model() {
         this.usersDatabase = new Database();
         this.isSignedIn = false;
-        // this.gameModel = new GameModel(this.controller);
     }
 
     public static Model getModel(IController c) {

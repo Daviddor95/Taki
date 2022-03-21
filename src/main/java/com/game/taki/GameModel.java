@@ -176,7 +176,6 @@ public class GameModel extends IGameModel{
 
     @Override
     public void intializeGame() {
-        // GameModel regularGame = new GameModel(players, colorsInGame);
         this.players.add(new Player(true));
         for (int i = 0; i < this.numberOfPlayers - 1; i++) {
             this.players.add(new Player(false));
@@ -190,17 +189,18 @@ public class GameModel extends IGameModel{
         this.controller.updateScene();
     }
 
-    public void MakeAMove(Player p ){
-        if(!this.isNextStopped){
+    public void MakeAMove(Player p) {
+        if (!this.isNextStopped) {
             p.getPlayingStrategy().doOperation(p, this.pile.getCurrentTopCard(), this);
-            if(isWinning(p)){
+            if (isWinning(p)) {
                 this.isWon = true;
                 //Enter winning message
                 return;
             }
-        }else{
+        } else {
             this.isNextStopped = false;
         }
+        this.controller.updateScene();
     }
 
     public void setNumberOfPlayers(int players) {
@@ -215,7 +215,7 @@ public class GameModel extends IGameModel{
     public void gameRound() {
         Player me = this.players.get(indexOfPerson);
         MakeAMove(me);
-        this.controller.updateScene();
+        // this.controller.updateScene();
         if(numberOfTimesItsStillMyTurn >0){
             setNumberOfTimesItsStillMyTurn(numberOfTimesItsStillMyTurn - 1);
             return;
@@ -242,7 +242,7 @@ public class GameModel extends IGameModel{
         boolean person = false;
         while(!person) {
             System.out.println(this.pile.getCurrentTopCard().getName() + this.pile.getCurrentTopCard().getColor());
-            this.controller.updateScene();
+            // this.controller.updateScene();
             try {
                 sleep(1000);
             } catch (InterruptedException e) {
@@ -262,14 +262,14 @@ public class GameModel extends IGameModel{
             if(wasReversed && indexOfPerson == 3 && players.size() == 4){
                 indexOfPerson = 0;
             }
-           if(wasReversed && players.size() == 3){
-               if(i==2){
-                   i = 0;
-               }else if(i == 0){
-                   i = 2;
-               }
-               wasReversed = false;
-           }
+            if(wasReversed && players.size() == 3){
+                if(i==2){
+                    i = 0;
+                }else if(i == 0){
+                    i = 2;
+                }
+                wasReversed = false;
+            }
             if(wasReversed && players.size() == 4){
                 if(i==3){
                     i = 0;
@@ -288,11 +288,10 @@ public class GameModel extends IGameModel{
             if (i>=players.size()){
                 i = i - players.size();
             }
-
             if ((this.numberOfTimesItsStillMyTurn == 0) && (i == indexOfPerson )) {
                 person = true;
             }
-            this.controller.updateScene();
+            // this.controller.updateScene();
         }
     }
 

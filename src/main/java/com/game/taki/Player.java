@@ -30,6 +30,7 @@ public class Player {
         playerCards.addAll(c);
     }
     public void popPlayedCard(ICard card){
+        System.out.println(this.playerCards.contains(card));
         playerCards.remove(card);
     }
 

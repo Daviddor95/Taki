@@ -26,7 +26,7 @@ public class MenuController implements IController {
                 try {
                     new SettingsView().start(stage);
                 } catch (IOException e) {
-                    // log message
+                    System.out.println("Failed to load the game properties");
                     e.printStackTrace();
                 }
             } else {
@@ -44,7 +44,7 @@ public class MenuController implements IController {
                     new LeaderboardView().start(stage);
                     model.showLeaderboard();
                 } catch (Exception e) {
-                    // log message
+                    System.out.println("Failed to load the leaderboard");
                     e.printStackTrace();
                 }
             } else {

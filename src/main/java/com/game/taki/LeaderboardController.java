@@ -32,7 +32,7 @@ public class LeaderboardController implements IController {
                 try {
                     new MenuView().start(stage);
                 } catch (Exception e) {
-                    // log message
+                    System.out.println("Failed to load the menu");
                     e.printStackTrace();
                 }
             } else {

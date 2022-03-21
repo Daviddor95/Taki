@@ -31,8 +31,8 @@ public class SettingsController implements IController {
                     new GameView().start(stage);
                     model.initializeGame();
                 } catch (IOException e) {
+                    System.out.println("Failed to load the game");
                     e.printStackTrace();
-                    // log message
                 }
             } else {
                 // user message

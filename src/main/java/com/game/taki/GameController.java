@@ -103,7 +103,6 @@ public class GameController implements IController {
 
     @Override
     public void updateScene() {
-        // System.out.println("MMMMMMMMMMMM");
         if (this.model.isWon()) {
             try {
                 new WinScreenView().start(this.stage);
@@ -127,7 +126,7 @@ public class GameController implements IController {
             handString.add(c.getName() + c.getColor());
         }
         ObservableList<String> observableHand = FXCollections.observableArrayList(handString);
-
+        this.handList.setItems(observableHand);
         this.handList.setCellFactory(arg -> new ListCell<>() {
             private ImageView img = new ImageView();
             @Override
@@ -155,7 +154,6 @@ public class GameController implements IController {
                 }
             }
         });
-        this.handList.setItems(observableHand);
         this.handList.refresh();
     }
 
