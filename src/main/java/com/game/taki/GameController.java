@@ -103,7 +103,7 @@ public class GameController implements IController {
 
     @Override
     public void updateScene() {
-        System.out.println("MMMMMMMMMMMM");
+        // System.out.println("MMMMMMMMMMMM");
         if (this.model.isWon()) {
             try {
                 new WinScreenView().start(this.stage);

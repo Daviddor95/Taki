@@ -241,6 +241,7 @@ public class GameModel extends IGameModel{
         }
         boolean person = false;
         while(!person) {
+            System.out.println(this.pile.getCurrentTopCard().getName() + this.pile.getCurrentTopCard().getColor());
             this.controller.updateScene();
             try {
                 sleep(1000);
