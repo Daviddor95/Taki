@@ -23,7 +23,7 @@ public class GameModel extends IGameModel{
     private int numberOfPlayers;
     private int handSize;
 
-    public GameModel(IController c){
+    public GameModel() { // IController c
         this.colors = new ArrayList<>();
         this.colors.add("R");
         this.colors.add("G");
@@ -36,10 +36,15 @@ public class GameModel extends IGameModel{
         this.numberOfTimesItsStillMyTurn = 0;
         this.isNextStopped = false;
         this.wasReversed = false;
-        this.controller = c;
+        // this.controller = c;
         this.isWon = false;
 
     }
+
+    public void setController(IController c) {
+        this.controller = c;
+    }
+
     public Player getCurrentPlayer(){
         return players.get(currentPlayerIndex);
     }

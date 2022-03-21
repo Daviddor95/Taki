@@ -13,6 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,45 +40,47 @@ public class GameController implements IController {
     @FXML
     protected EventHandler<MouseEvent> onPickCardFromHandClick = new EventHandler<>() {
         @Override
-        public void handle(MouseEvent actionEvent) {
-            ImageView imageCard = (ImageView) actionEvent.getSource();
-            String cardName = imageCard.getId(), color = cardName.substring(cardName.length() - 1);
-            String nameWithoutColor = cardName.substring(0, cardName.length() - 1), name = "";
-            ICard card;
-            try {
-                Integer.parseInt(cardName.substring(0, 1));
-                if (cardName.charAt(1) != '+') {
-                    card = new Card(name, color);
-                } else {
-                    card = new DrawTwoCard(new Card("2+", color));
+        public void handle(MouseEvent mouseEvent) {
+            if (mouseEvent.getSource() instanceof ImageView) {
+                ImageView imageCard = (ImageView) mouseEvent.getSource();
+                String cardName = imageCard.getId(), color = cardName.substring(cardName.length() - 1);
+                String nameWithoutColor = cardName.substring(0, cardName.length() - 1), name = "";
+                ICard card;
+                try {
+                    Integer.parseInt(cardName.substring(0, 1));
+                    if (cardName.charAt(1) != '+') {
+                        card = new Card(name, color);
+                    } else {
+                        card = new DrawTwoCard(new Card("2+", color));
+                    }
+                } catch (NumberFormatException e) {
+                    switch (nameWithoutColor) {
+                        case "ChangeColor":
+                            card = new ChangeColorCard(new Card("ChangeColor", color));
+                            break;
+                        case "ChangeDirection":
+                            card = new ChangeDirectionCard(new Card("ChangeDirection", color));
+                            break;
+                        case "Plus":
+                            card = new PlusCard(new Card("Plus", color));
+                            break;
+                        case "Stop":
+                            card = new StopCard(new Card("Stop", color));
+                            break;
+                        case "SuperTaki":
+                            card = new SuperTakiCard(new Card("SuperTaki", color));
+                            break;
+                        case "Taki":
+                            card = new TakiCard(new Card("Taki", color));
+                            break;
+                        default:
+                            card = null;
+                            break;
+                    }
                 }
-            } catch (NumberFormatException e){
-                switch (nameWithoutColor) {
-                    case "ChangeColor":
-                        card = new ChangeColorCard(new Card("ChangeColor", color));
-                        break;
-                    case "ChangeDirection":
-                        card = new ChangeDirectionCard(new Card("ChangeDirection", color));
-                        break;
-                    case "Plus":
-                        card = new PlusCard(new Card("Plus", color));
-                        break;
-                    case "Stop":
-                        card = new StopCard(new Card("Stop", color));
-                        break;
-                    case "SuperTaki":
-                        card = new SuperTakiCard(new Card("SuperTaki", color));
-                        break;
-                    case "Taki":
-                        card = new TakiCard(new Card("Taki", color));
-                        break;
-                    default:
-                        card = null;
-                        break;
-                }
+                model.setChoosenCard(card);
+                model.gameRound();
             }
-            model.setChoosenCard(card);
-            model.gameRound();
         }
     };
     @FXML
@@ -101,7 +104,7 @@ public class GameController implements IController {
         List<ICard> hand = this.model.getPlayerHand();
         List<String> handString = new ArrayList<>();
         for (ICard c : hand) {
-            handString.add(c.getName() + c.getColor() + ".jpg");
+            handString.add(c.getName() + c.getColor());
         }
         ObservableList<String> observableHand = FXCollections.observableArrayList(handString);
 
@@ -116,7 +119,13 @@ public class GameController implements IController {
                     String[] cards = model.getAllCardsNames();
                     for (String cardString : cards) {
                         if (cardName.equals(cardString)) {
-                            img.setImage(new Image(cardName));
+                            System.out.println(cardName);
+                            try {
+                                img.setImage(new Image(getClass().getResource(cardName + ".jpg").toURI().toString(),70 ,110, true, true));
+                            } catch (URISyntaxException e) {
+                                System.out.println("error");
+                                e.printStackTrace();
+                            }
                             break;
                         }
                     }

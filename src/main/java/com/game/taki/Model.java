@@ -13,7 +13,7 @@ public class Model {
     private boolean isSignedIn;
     private int playersNum;
     private int handSize;
-    private GameModel gameModel;
+    private static GameModel gameModel;
     private static Model model;
     public static final String usersColumnKey = "Users";
     public static final String scoresColumnKey = "Scores";
@@ -21,7 +21,7 @@ public class Model {
     private Model() {
         this.usersDatabase = new Database();
         this.isSignedIn = false;
-        this.gameModel = new GameModel(this.controller);
+        // this.gameModel = new GameModel(this.controller);
     }
 
     public static Model getModel(IController c) {
@@ -29,6 +29,10 @@ public class Model {
             model = new Model();
         }
         model.setController(c);
+        if (gameModel == null) {
+            gameModel = new GameModel();
+        }
+        gameModel.setController(c);
         return model;
     }
 
