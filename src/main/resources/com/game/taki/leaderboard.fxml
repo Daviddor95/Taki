@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
 <AnchorPane fx:id="pane" prefHeight="540.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.game.taki.LeaderboardController">
-    <TableView fx:id="highscore" layoutX="200.0" layoutY="90.0" prefHeight="400.0" prefWidth="300.0">
+    <ImageView fx:id="logo" fitHeight="150.0" fitWidth="200.0" layoutX="260.0" pickOnBounds="true" preserveRatio="true">
+        <Image url="@Taki_Cards_Game_Logo.png" />
+    </ImageView>
+    <TableView fx:id="highscore" layoutX="210.0" layoutY="116.0" prefHeight="350.0" prefWidth="300.0">
       <columns>
           <TableColumn fx:id="users" editable="false" maxWidth="250.0" minWidth="50.0" prefWidth="230.0" resizable="false" text="User name" />
           <TableColumn fx:id="scores" editable="false" maxWidth="65.0" minWidth="30.0" prefWidth="65.0" resizable="false" text="Wins" />
       </columns>
     </TableView>
+   <Button fx:id="back" layoutX="334.0" layoutY="483.0" mnemonicParsing="false" text="Back" />
 </AnchorPane>

@@ -6,17 +6,13 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,12 +20,12 @@ public class GameController implements IController {
     private Model model;
     private Application view;
     private Stage stage;
-    @FXML
-    private ImageView pickCardFromDeck;
-    @FXML
-    private MenuButton chooseColorButton;
-    @FXML
-    private ImageView playerCardImages;
+//    @FXML
+//    private ImageView pickCardFromDeck;
+//    @FXML
+//    private MenuButton chooseColorButton;
+//    @FXML
+//    private ImageView playerCardImages;
     @FXML
     private ListView<String> handList;
 
@@ -47,30 +43,16 @@ public class GameController implements IController {
             ImageView imageCard = (ImageView) actionEvent.getSource();
             String cardName = imageCard.getId(), color = cardName.substring(cardName.length() - 1);
             String nameWithoutColor = cardName.substring(0, cardName.length() - 1), name = "";
-            int numberCard;
-            boolean isNumber;
-            try {
-                numberCard = Integer.parseInt(cardName.substring(0, 1));
-                if (cardName.charAt(1) != '+') {
-                    name = cardName.substring(0, 1);
-                    color = cardName.substring(1, 2);
-                    isNumber = true;
-                } else {
-                    name = cardName.substring(0, 2);
-                    color = cardName.substring(2, 3);
-                    isNumber = false;
-                }
-            } catch(NumberFormatException e){
-                isNumber = false;
-            }
             ICard card;
-            if (isNumber) {
-                card = new Card(name, color);
-            } else {
+            try {
+                Integer.parseInt(cardName.substring(0, 1));
+                if (cardName.charAt(1) != '+') {
+                    card = new Card(name, color);
+                } else {
+                    card = new DrawTwoCard(new Card("2+", color));
+                }
+            } catch (NumberFormatException e){
                 switch (nameWithoutColor) {
-                    case "2+":
-                        card = new DrawTwoCard(new Card("2+", color));
-                        break;
                     case "ChangeColor":
                         card = new ChangeColorCard(new Card("ChangeColor", color));
                         break;
@@ -88,15 +70,14 @@ public class GameController implements IController {
                         break;
                     case "Taki":
                         card = new TakiCard(new Card("Taki", color));
+                        break;
                     default:
                         card = null;
+                        break;
                 }
             }
-            assert card != null;
-            model.doCardAction(card);
-            // card.doAction(model.getGame());
-            // if (String.cardName[0])
-            // ICard card = new Card()
+            model.setChoosenCard(card);
+            model.gameRound();
         }
     };
     @FXML
@@ -106,16 +87,17 @@ public class GameController implements IController {
 
         }
     };
-    @FXML
-    protected EventHandler<ActionEvent> onSettingsButtonClick = new EventHandler<>() {
-        @Override
-        public void handle(ActionEvent actionEvent) {
-
-        }
-    };
 
     @Override
     public void updateScene() {
+        if (this.model.isWon()) {
+            try {
+                new WinScreenView().start(this.stage);
+                return;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         List<ICard> hand = this.model.getPlayerHand();
         List<String> handString = new ArrayList<>();
         for (ICard c : hand) {

@@ -2,9 +2,6 @@ package com.game.taki;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
-import java.io.File;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -14,16 +11,17 @@ public class Model {
     private String userName;
     private String password;
     private boolean isSignedIn;
-    private static Model model;
     private int playersNum;
     private int handSize;
     private GameModel gameModel;
+    private static Model model;
     public static final String usersColumnKey = "Users";
     public static final String scoresColumnKey = "Scores";
 
     private Model() {
         this.usersDatabase = new Database();
         this.isSignedIn = false;
+        // this.gameModel = new GameModel();
     }
 
     public static Model getModel(IController c) {
@@ -121,27 +119,19 @@ public class Model {
         card.doAction(this.gameModel);
     }
 
+    public void setChoosenCard(ICard card) {
+        this.gameModel.setChoosenCardInThisTurn(card);
+    }
+
+    public void gameRound() {
+        this.gameModel.courseOfGame();
+    }
+
+    public boolean isWon() {
+        return true; // this.gameModel.isWon();
+    }
+
+    public boolean leaderboardBack() {
+        return true;
+    }
 }
-//    // @@@@@@
-//    public HashMap<String, Integer> getSortedScores() {
-//        Stream<Map.Entry<String, Integer>> stream = this.usersDatabase.getScores().entrySet().stream();
-//        Stream<Map.Entry<String, Integer>> sortedStream = stream.sorted(Map.Entry.<String, Integer>comparingByValue().reversed());
-//        return sortedStream.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (o1, o2) -> o1,
-//                LinkedHashMap::new));
-//    }
-
-// ------
-
-// SortedList<Map> sortedList = new SortedList<Map>(table);
-//        ObservableList<Map> table = FXCollections.observableArrayList();
-//        Map scoresMap = new TreeMap<>(this.usersDatabase.getScores());
-//        int len = scoresMap.size();
-//        for (int i = 0; i < len; i++) {
-//            Map row = new TreeMap<>();
-//            String userName = scoresMap.keySet().toArray()[0].toString();
-//            row.put(Model.usersColumnKey, userName);
-//            row.put(Model.scoresColumnKey, scoresMap.get(userName).toString());
-//            table.add(row);
-//            scoresMap.remove(userName);
-//        }
-// return sortedList;

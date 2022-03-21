@@ -14,27 +14,9 @@ public class MenuController implements IController {
     private Application view;
     private Stage stage;
     @FXML
-    private Button playPCButton;
-    @FXML
-    private Button playOnlineButton;
-    @FXML
     private Button settingsButton;
     @FXML
     private Button leaderboardButton;
-    @FXML
-    protected EventHandler<ActionEvent> onPlayPCButtonClick = new EventHandler<>() {
-        @Override
-        public void handle(ActionEvent actionEvent) {
-
-        }
-    };
-    @FXML
-    protected EventHandler<ActionEvent> onPlayOnlineButtonClick = new EventHandler<>() {
-        @Override
-        public void handle(ActionEvent actionEvent) {
-
-        }
-    };
     @FXML
     protected EventHandler<ActionEvent> onSettingsButtonClick = new EventHandler<>() {
         @Override
