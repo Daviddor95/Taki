@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Card implements ICard {
     private String name;
     private String color;
-    private Boolean isFaceDown;
+    //private Boolean isFaceDown;
 
     public static boolean isNumeric(String str) {
         if (str == null) {
@@ -25,9 +25,9 @@ public class Card implements ICard {
         this.color = color;
     }
 
-    public boolean isValidAction(ICard current){
+    public boolean isValidAction(ICard current, GameModel g){
         //return (current.getColor().equals(this.color) || ((current.getName().equals(this.name)) && isNumeric(this.name)));
-        if (current.getName().startsWith("2+")){
+        if (current.getName().startsWith("2+") && (g.getCurrentPlayer().getNumCardsHeNeedsToDraw()>0)){
             if(this.name.startsWith("2+")){
                 return true;
             } else{
@@ -38,7 +38,7 @@ public class Card implements ICard {
     }
     @Override
     public void doAction(GameModel game) {
-        if(this.isValidAction(game.getPile().getCurrentTopCard())){
+        if(this.isValidAction(game.getPile().getCurrentTopCard(), game)){
             PileOfPlayedCards newPile = game.getPile();
             int currentPlayerIndex = game.getCurrentPlayerIndex();
             ArrayList<Player> players = game.getPlayers();

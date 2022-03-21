@@ -13,8 +13,8 @@ public abstract class DecoratedCard implements ICard{
     }
 
     @Override
-    public boolean isValidAction(ICard current) {
-        return this.decoratedCard.isValidAction(current);
+    public boolean isValidAction(ICard current, GameModel g) {
+        return this.decoratedCard.isValidAction(current, g);
     }
 
     @Override
