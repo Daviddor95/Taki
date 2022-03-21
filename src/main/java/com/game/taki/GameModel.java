@@ -316,6 +316,18 @@ public class GameModel extends IGameModel{
     public void setChoosenCardInThisTurn(ICard choosenCardInThisTurn) {
         this.choosenCardInThisTurn = choosenCardInThisTurn;
     }
+
+    public void addCardToPile(ICard card){
+        this.pile.addToPlayedCards(card);
+    }
+
+    public void setCurrentTopCardInPile(ICard card){
+        this.pile.setCurrentTopCard(card);
+    }
+
+    public void popPlayedCardOfCurrentPlayer(ICard card){
+        this.players.get(this.currentPlayerIndex).popPlayedCard(card);
+    }
 }
 
 //        while (!person) {
