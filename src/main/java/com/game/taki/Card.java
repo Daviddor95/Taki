@@ -39,24 +39,10 @@ public class Card implements ICard {
     @Override
     public void doAction(GameModel game) {
         if(this.isValidAction(game.getPile().getCurrentTopCard(), game)){
-            PileOfPlayedCards newPile = game.getPile();
-            int currentPlayerIndex = game.getCurrentPlayerIndex();
-            ArrayList<Player> players = game.getPlayers();
-
-            newPile.addToPlayedCards(this);
-            newPile.setCurrentTopCard(this);
-
-            Player currentPlayer = game.getCurrentPlayer();
-            currentPlayer.popPlayedCard(this);
-            players.set(currentPlayerIndex, currentPlayer);
-
-            game.setPlayers(players);
-            game.setPile(newPile);
-
+            game.addCardToPile(this);
+            game.setCurrentTopCardInPile(this);
+            game.popPlayedCardOfCurrentPlayer(this);
             game.setIsNextPlayer(true);
-            if(game.getNumberOfTimesItsStillMyTurn()>0){
-               game.setNumberOfTimesItsStillMyTurn (game.getNumberOfTimesItsStillMyTurn()-1);
-            }
         }
     }
 
