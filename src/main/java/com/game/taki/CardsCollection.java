@@ -12,7 +12,7 @@ public class CardsCollection implements Collection<ICard> {
 
     public CardsCollection() {
         this.cards = new ArrayList<>();
-        this.topIndex = -1;
+        this.topIndex = 0;
     }
 
     public CardsCollection(List<ICard> cardsList) {
@@ -123,6 +123,6 @@ public class CardsCollection implements Collection<ICard> {
     }
 
     public int getTopIndex() {
-        return this.topIndex;
+        return this.topIndex - 1;
     }
 }
