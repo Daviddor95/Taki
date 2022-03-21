@@ -12,7 +12,9 @@ public class StopCard extends DecoratedCard{
     @Override
     public void doAction(GameModel game) {
         decoratedCard.doAction(game);
-        addedBehavior(game);
+        if(game.getNumberOfTimesItsStillMyTurn() ==0){
+            addedBehavior(game);
+        }
 
     }
 
