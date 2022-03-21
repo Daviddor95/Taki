@@ -9,5 +9,4 @@ public class StartGameCommand extends Command {
     public boolean execute() {
         return this.model.startGame();
     }
-
 }

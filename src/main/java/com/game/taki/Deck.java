@@ -35,7 +35,7 @@ public class Deck {
     public void shuffle() {
         List<ICard> temp = this.cards.getCardsFromCollection();
         Collections.shuffle(temp);
-        this.cards.setCardsForCollection(temp);
+        this.cards = new CardsCollection(temp);
     }
 
     public List<ICard> getCards() {
@@ -46,7 +46,7 @@ public class Deck {
     }
 
     public void setCards(List<ICard> cards) {
-        this.cards.setCardsForCollection(cards);
+        this.cards = new CardsCollection(cards);
     }
 
     public ArrayList<String> getColorsInGame() {

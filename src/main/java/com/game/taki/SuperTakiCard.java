@@ -1,6 +1,5 @@
 package com.game.taki;
 
-
 public class SuperTakiCard extends TakiCard{
 
     public SuperTakiCard(ICard decoratedCard) {
@@ -13,9 +12,8 @@ public class SuperTakiCard extends TakiCard{
         decoratedCard.doAction(game);
     }
 
-
     private void addedBehaviorForSuperTaki(GameModel game) {
-        this.decoratedCard = new TakiCard(new Card("Taki Card", game.getPile().getCurrentTopCard().getColor()));
+        this.decoratedCard = new TakiCard(new Card("Taki", game.getPile().getCurrentTopCard().getColor()));
         PileOfPlayedCards newPile = game.getPile();
         newPile.setCurrentTopCard(decoratedCard);
         game.setPile(newPile);

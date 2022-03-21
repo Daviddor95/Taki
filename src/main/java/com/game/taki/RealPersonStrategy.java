@@ -7,6 +7,7 @@ public class RealPersonStrategy implements AIStrategy {
             for (int k = 0; k < p.getNumCardsHeNeedsToDraw(); k++) {
                 game.takingCardFromDeck(p);
             }
+            p.setNumCardsHeNeedsToDraw(0);
         } else {
             ICard card = game.getChoosenCardInThisTurn();
             if(card.isValidAction(current, game)) {

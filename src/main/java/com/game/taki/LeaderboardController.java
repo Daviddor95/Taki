@@ -72,26 +72,3 @@ public class LeaderboardController implements IController {
         this.back.setOnAction(this.onBackButtonClick);
     }
 }
-
-//        ObservableList<Map.Entry<String, Integer>> tableEntries = FXCollections.emptyObservableList();
-//        tableEntries.addAll();
-
-//        this.users.setCellValueFactory(new MapValueFactory<>(Model.usersColumnKey));
-//        this.scores.setCellValueFactory(new MapValueFactory<>(Model.scoresColumnKey));
-//
-// this.highscore = new TableView<>(this.model.getScores());
-//        Callback<TableColumn<Map, String>, TableCell<Map, String>> cellFactory = (TableColumn<Map, String> c) ->
-//                new TextFieldTableCell<>(new StringConverter<>() {
-//                    @Override
-//                    public String toString(String s) {
-//                        return s.toString();
-//                    }
-//
-//                    @Override
-//                    public String fromString(String s) {
-//                        return s;
-//                    }
-//                });
-//        this.users.setCellFactory(cellFactory);
-//        this.scores.setCellFactory(cellFactory);
-// ObservableList<Map> tableEntries = FXCollections.observableList();

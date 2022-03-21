@@ -103,35 +103,4 @@ public class StartScreenController implements IController {
     @Override
     public void updateScene() {
     }
-
-
-//    @FXML
-//    protected void onCreateAccountButtonClick() {
-//        this.model.setUserName(this.userNameInput.getCharacters());
-//        this.model.setPassword(this.passwordInput.getCharacters());
-//        Command createAccount = new CreateAccountCommand(this.model);
-//        if (createAccount.execute()) {
-//            this.welcomeScreen.setVisible(false);
-//        } else {
-//            this.errorMessage.setText("Failed to create the account. Please try a different user name.");
-//        }
-//    }
-//
-//    @FXML
-//    protected void onGuestButtonClick() {
-//        Command guest = new GuestCommand(this.model);
-//        if (guest.execute()) {
-//            this.welcomeScreen.setVisible(false);
-//        } else {
-//            this.errorMessage.setText("Failed to start the game. Please try again.");
-//        }
-//    }
-
-//    public void logInSuccessful() {
-//
-//    }
-//
-//    public void logInFailed(String message) {
-//        this.errorMessage.setText(message);
-//    }
 }

@@ -16,7 +16,6 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class GameController implements IController {
     private Model model;
@@ -24,29 +23,8 @@ public class GameController implements IController {
     private Stage stage;
     @FXML
     private ImageView pileTopCard;
-//    @FXML
-//    private ImageView pickCardFromDeck;
-//    @FXML
-//    private MenuButton chooseColorButton;
-//    @FXML
-//    private ImageView playerCardImages;
     @FXML
     private ListView<String> handList;
-
-    @FXML
-    protected EventHandler<ActionEvent> onPickCardFromDeckClick = new EventHandler<>() {
-        @Override
-        public void handle(ActionEvent actionEvent) {
-
-        }
-    };
-    @FXML
-    protected EventHandler<ActionEvent> onPickCardFromListClick = new EventHandler<>() {
-        @Override
-        public void handle(ActionEvent actionEvent) {
-
-        }
-    };
     @FXML
     protected EventHandler<MouseEvent> onPickCardFromHandClick = new EventHandler<>() {
         @Override
@@ -138,7 +116,6 @@ public class GameController implements IController {
                     String[] cards = model.getAllCardsNames();
                     for (String cardString : cards) {
                         if (cardName.equals(cardString)) {
-                            // System.out.println(cardName);
                             try {
                                 img.setImage(new Image(getClass().getResource(cardName + ".jpg").toURI().toString(),70 ,110, true, true));
                             } catch (URISyntaxException e) {

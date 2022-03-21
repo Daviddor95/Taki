@@ -1,6 +1,5 @@
 package com.game.taki;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class PileOfPlayedCards {
@@ -36,8 +35,9 @@ public class PileOfPlayedCards {
     }
 
     public void setPlayedCards(List<ICard> playedCards) {
-        this.playedCards.setCardsForCollection(playedCards);
+        this.playedCards = new CardsCollection(playedCards);
     }
+
     public void removeTopCard(){
         this.playedCards.remove(this.playedCards.getCardsFromCollection().get(this.playedCards.size()-1));
         this.setCurrentTopCard(this.playedCards.getCardsFromCollection().get(this.playedCards.size()-1));

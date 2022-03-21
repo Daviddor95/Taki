@@ -19,9 +19,6 @@ public class Player {
         }
     }
 
-    public void play(){
-    }
-
     public void addToPlayersCollection(CardsCollection c){
         playerCards.addAll(c);
     }

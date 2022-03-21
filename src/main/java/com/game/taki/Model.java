@@ -2,7 +2,6 @@ package com.game.taki;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import java.util.List;
 import java.util.Map;
 
 public class Model {
@@ -140,9 +139,5 @@ public class Model {
 
     public ICard getTopPileCard() {
         return gameModel.getTopPileCard();
-    }
-
-    public void RemoveTopCardFromDeck(){
-
     }
 }

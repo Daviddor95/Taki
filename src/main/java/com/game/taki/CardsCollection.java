@@ -12,7 +12,7 @@ public class CardsCollection implements Collection<ICard> {
 
     public CardsCollection() {
         this.cards = new ArrayList<>();
-        this.topIndex = 0;
+        this.topIndex = -1;
     }
 
     public CardsCollection(List<ICard> cardsList) {
@@ -26,10 +26,6 @@ public class CardsCollection implements Collection<ICard> {
 
     public ICard getCard(int index) {
         return this.cards.get(index);
-    }
-
-    public void setCardsForCollection(List<ICard> cards){
-        this.cards = cards;
     }
 
     @Override
@@ -127,10 +123,6 @@ public class CardsCollection implements Collection<ICard> {
     }
 
     public int getTopIndex() {
-        return this.topIndex - 1;
-    }
-
-    public void setTopIndex(int topIndex) {
-        this.topIndex = topIndex;
+        return this.topIndex;
     }
 }
