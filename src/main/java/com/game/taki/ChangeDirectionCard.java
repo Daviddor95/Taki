@@ -11,11 +11,17 @@ public class ChangeDirectionCard extends DecoratedCard{
     @Override
     public void doAction(GameModel game) {
         decoratedCard.doAction(game);
-        addedBehavior(game);
+        if(game.getNumberOfTimesItsStillMyTurn() ==0){
+            addedBehavior(game);
+        }
+
 
     }
 
     protected void addedBehavior(GameModel game) {
-        game.ReverseOrderOfPlayers();
+        if(game.getPlayers().size() != 2){
+            game.ReverseOrderOfPlayers();
+        }
+
     }
 }

@@ -13,6 +13,8 @@ public class GameModel extends IGameModel{
     private boolean isNextStopped;
     private ICard choosenCardInThisTurn;
     private int direction = 1;
+    private int indexOfPerson = 0;
+    private boolean wasReversed;
 
     public GameModel(ArrayList<Player> players, ArrayList<String> colorsInGame){
         this.deck = new Deck(colorsInGame);
@@ -21,6 +23,7 @@ public class GameModel extends IGameModel{
         this.isNextPlayer = false;
         this.numberOfTimesItsStillMyTurn = 0;
         this.isNextStopped = false;
+        this.wasReversed = false;
 
     }
     public Player getCurrentPlayer(){
@@ -39,6 +42,7 @@ public class GameModel extends IGameModel{
         }
 
         this.setPlayers(revPlayerList);
+        this.wasReversed = true;
     }
 
 
@@ -160,28 +164,105 @@ public class GameModel extends IGameModel{
         this.pile.setCurrentTopCard(centralCard);
     }
 
-    @Override
-    public void courseOfGame() {
-        Player me = this.players.get(0);
-        me.getPlayingStrategy().doOperation(me, this.pile.getCurrentTopCard(), this);
-        if(isWinning(me)){
-            //Enter winning message
-            return;
-        }
-        boolean person = false;
-        // int k =this.direction
-        for (int i = 1; !person; i += 1) {
-            Player p = this.players.get(i);
+    public void MakeAMove(Player p ){
+        if(!this.isNextStopped){
             p.getPlayingStrategy().doOperation(p, this.pile.getCurrentTopCard(), this);
-            // steps = 1, -1, 0, 2
             if(isWinning(p)){
                 //Enter winning message
                 return;
             }
-            if (i == 0) {
+        }else{
+            this.isNextStopped = false;
+        }
+    }
+
+
+
+    @Override
+    public void courseOfGame() {
+        Player me = this.players.get(indexOfPerson);
+
+        MakeAMove(me);
+        if(numberOfTimesItsStillMyTurn >0){
+            setNumberOfTimesItsStillMyTurn(numberOfTimesItsStillMyTurn - 1);
+            return;
+        }
+        int i = 1;
+
+        //if first card is change direction card
+        if(wasReversed && indexOfPerson == 0 && players.size() == 3){
+            indexOfPerson = 2;
+            wasReversed = false;
+            i = 0;
+        }else if(wasReversed && indexOfPerson == 2 && players.size() == 3){
+            indexOfPerson = 0;
+            wasReversed = false;
+            i = 1;
+        }else if(wasReversed && indexOfPerson == 3 && players.size() == 4){
+            indexOfPerson = 0;
+            wasReversed = false;
+            i = 1;
+        }else if(wasReversed && indexOfPerson == 0 && players.size() == 4){
+            indexOfPerson = 3;
+            wasReversed = false;
+            i = 0;
+        }
+
+        int j = 0;
+        boolean person = false;
+        // int k =this.direction
+        for (; !person;) {
+            Player p = this.players.get(i);
+            MakeAMove(p);
+
+            if(wasReversed && indexOfPerson == 0 && players.size() == 3){
+                indexOfPerson = 2;
+            }
+            if(wasReversed && indexOfPerson == 2 && players.size() == 3){
+                indexOfPerson = 0;
+            }
+            if(wasReversed && indexOfPerson == 0 && players.size() == 4){
+                indexOfPerson = 3;
+            }
+            if(wasReversed && indexOfPerson == 3 && players.size() == 4){
+                indexOfPerson = 0;
+            }
+
+           if(wasReversed && players.size() == 3){
+               if(i==2){
+                   i = 0;
+               }else if(i == 0){
+                   i = 2;
+               }
+               wasReversed = false;
+           }
+
+            if(wasReversed && players.size() == 4){
+                if(i==3){
+                    i = 0;
+                }else if(i == 0){
+                    i = 3;
+                }else if(i==1){
+                    i = 2;
+                }else if(i == 2){
+                    i = 1;
+                }
+                wasReversed = false;
+            }
+
+
+            if(this.numberOfTimesItsStillMyTurn == 0){
+                i++;
+            }
+            if (i>=players.size()){
+                i = i - players.size();
+            }
+
+            if ((this.numberOfTimesItsStillMyTurn == 0) && (i == indexOfPerson )) {
                 person = true;
             }
         }
+
 
 
 //        while (!person) {

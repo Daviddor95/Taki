@@ -3,13 +3,20 @@ package com.game.taki;
 public class RealPersonStrategy implements AIStrategy{
     @Override
     public void doOperation(Player p, ICard current, GameModel game) {
-        ICard card = game.getChoosenCardInThisTurn();
-        if(card.isValidAction(current)){
-            card.doAction(game);
+        if(p.getNumCardsHeNeedsToDraw()>0) {
+            for (int k = 0; k < p.getNumCardsHeNeedsToDraw(); k++) {
+                game.takingCardFromDeck(p);
+            }
+        }else{
+            ICard card = game.getChoosenCardInThisTurn();
+            if(card.isValidAction(current)){
+                card.doAction(game);
+            }
+            else{
+                game.takingCardFromDeck(p);
+            }
         }
-         else{
-             game.takingCardFromDeck(p);
-         }
+
 
     }
 }

@@ -8,16 +8,23 @@ public class ComputerDiffStrategy implements AIStrategy {
     public void doOperation(Player p, ICard current, GameModel game) {
         boolean ok = false;
         CardsCollection playersCards = p.getCardsCollect();
-        for(ICard card : playersCards){
-            if (card.isValidAction(current)){
-                card.doAction(game);
-                ok = true;
-                break;
+        if(p.getNumCardsHeNeedsToDraw()>0) {
+            for (int k = 0; k < p.getNumCardsHeNeedsToDraw(); k++) {
+                game.takingCardFromDeck(p);
+            }
+        }else{
+            for(ICard card : playersCards){
+                if (card.isValidAction(current)){
+                    card.doAction(game);
+                    ok = true;
+                    break;
+                }
+            }
+
+            if(!ok){
+                game.takingCardFromDeck(p);
             }
         }
 
-        if(!ok){
-            game.takingCardFromDeck(p);
-        }
     }
 }
