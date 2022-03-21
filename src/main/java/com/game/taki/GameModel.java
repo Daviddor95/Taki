@@ -23,7 +23,7 @@ public class GameModel extends IGameModel{
     private int numberOfPlayers;
     private int handSize;
 
-    public GameModel() { // IController c
+    public GameModel() {
         this.colors = new ArrayList<>();
         this.colors.add("R");
         this.colors.add("G");
@@ -36,7 +36,6 @@ public class GameModel extends IGameModel{
         this.numberOfTimesItsStillMyTurn = 0;
         this.isNextStopped = false;
         this.wasReversed = false;
-        // this.controller = c;
         this.isWon = false;
 
     }
@@ -89,7 +88,9 @@ public class GameModel extends IGameModel{
         this.pile = pile;
     }
 
-
+    public ICard getTopPileCard() {
+        return this.pile.getCurrentTopCard();
+    }
 
     public int getCurrentPlayerIndex() {
         return currentPlayerIndex;
@@ -183,6 +184,7 @@ public class GameModel extends IGameModel{
         DistributeCards(this.handSize);
         ICard centralCard = getDeck().getCards().get(getDeck().getCardsCollect().getTopIndex());
         this.deck.removeTopCardInDeck();
+        this.setChoosenCardInThisTurn(centralCard);
         this.pile.addToPlayedCards(centralCard);
         this.pile.setCurrentTopCard(centralCard);
         this.controller.updateScene();
@@ -210,9 +212,10 @@ public class GameModel extends IGameModel{
     }
 
     @Override
-    public void courseOfGame() {
+    public void gameRound() {
         Player me = this.players.get(indexOfPerson);
         MakeAMove(me);
+        this.controller.updateScene();
         if(numberOfTimesItsStillMyTurn >0){
             setNumberOfTimesItsStillMyTurn(numberOfTimesItsStillMyTurn - 1);
             return;
@@ -238,8 +241,9 @@ public class GameModel extends IGameModel{
         }
         boolean person = false;
         while(!person) {
+            this.controller.updateScene();
             try {
-                sleep(3000);
+                sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -287,30 +291,8 @@ public class GameModel extends IGameModel{
             if ((this.numberOfTimesItsStillMyTurn == 0) && (i == indexOfPerson )) {
                 person = true;
             }
+            this.controller.updateScene();
         }
-//        while (!person) {
-//            p = p.
-//            if(isWinning(p)){
-//                    //Enter winning message
-//                    ok=false;
-//                    break;
-//            }
-//            person =true;
-//        }
-//        boolean ok=true;
-//        while (ok){
-//            for (int i = 0; i < players.size(); i++){
-//                Player p = players.get(i);
-//                while
-//                if (computer)
-//                    p.getPlayingStrategy().doOperation(p, this.pile.getCurrentTopCard(), this); // this.pile.getCurrentTopCard()
-//                if(isWinning(p)){
-//                    //Enter winning message
-//                    ok=false;
-//                    break;
-//                }
-//            }
-//        }
     }
 
     @Override
@@ -334,3 +316,28 @@ public class GameModel extends IGameModel{
         this.choosenCardInThisTurn = choosenCardInThisTurn;
     }
 }
+
+//        while (!person) {
+//            p = p.
+//            if(isWinning(p)){
+//                    //Enter winning message
+//                    ok=false;
+//                    break;
+//            }
+//            person =true;
+//        }
+//        boolean ok=true;
+//        while (ok){
+//            for (int i = 0; i < players.size(); i++){
+//                Player p = players.get(i);
+//                while
+//                if (computer)
+//                    p.getPlayingStrategy().doOperation(p, this.pile.getCurrentTopCard(), this); // this.pile.getCurrentTopCard()
+//                if(isWinning(p)){
+//                    //Enter winning message
+//                    ok=false;
+//                    break;
+//                }
+//            }
+//        }
+

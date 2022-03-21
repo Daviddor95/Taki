@@ -99,19 +99,19 @@ public class Model {
     }
 
     public void setNumberOfPlayers(int players) {
-        this.gameModel.setNumberOfPlayers(players);
+        gameModel.setNumberOfPlayers(players);
     }
 
     public void setNumberOfHandCards(int numOfCards) {
-        this.gameModel.setNumberOfHandCards(numOfCards);
+        gameModel.setNumberOfHandCards(numOfCards);
     }
 
     public void initializeGame() {
-        this.gameModel.intializeGame();
+        gameModel.intializeGame();
     }
 
     public List<ICard> getPlayerHand() {
-        return this.gameModel.getPlayerHand();
+        return gameModel.getPlayerHand();
     }
 
     public String[] getAllCardsNames() {
@@ -123,23 +123,27 @@ public class Model {
     }
 
     public void doCardAction(ICard card) {
-        this.gameModel.setChoosenCardInThisTurn(card);
-        card.doAction(this.gameModel);
+        gameModel.setChoosenCardInThisTurn(card);
+        card.doAction(gameModel);
     }
 
     public void setChoosenCard(ICard card) {
-        this.gameModel.setChoosenCardInThisTurn(card);
+        gameModel.setChoosenCardInThisTurn(card);
     }
 
     public void gameRound() {
-        this.gameModel.courseOfGame();
+        gameModel.gameRound();
     }
 
     public boolean isWon() {
-        return this.gameModel.isWon();
+        return gameModel.isWon();
     }
 
     public boolean leaderboardBack() {
         return true;
+    }
+
+    public ICard getTopPileCard() {
+        return gameModel.getTopPileCard();
     }
 }

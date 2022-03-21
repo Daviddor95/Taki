@@ -16,11 +16,14 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class GameController implements IController {
     private Model model;
     private Application view;
     private Stage stage;
+    @FXML
+    private ImageView pileTopCard;
 //    @FXML
 //    private ImageView pickCardFromDeck;
 //    @FXML
@@ -38,49 +41,56 @@ public class GameController implements IController {
         }
     };
     @FXML
+    protected EventHandler<ActionEvent> onPickCardFromListClick = new EventHandler<>() {
+        @Override
+        public void handle(ActionEvent actionEvent) {
+
+        }
+    };
+    @FXML
     protected EventHandler<MouseEvent> onPickCardFromHandClick = new EventHandler<>() {
         @Override
         public void handle(MouseEvent mouseEvent) {
-            if (mouseEvent.getSource() instanceof ImageView) {
-                ImageView imageCard = (ImageView) mouseEvent.getSource();
-                String cardName = imageCard.getId(), color = cardName.substring(cardName.length() - 1);
-                String nameWithoutColor = cardName.substring(0, cardName.length() - 1), name = "";
-                ICard card;
-                try {
-                    Integer.parseInt(cardName.substring(0, 1));
-                    if (cardName.charAt(1) != '+') {
-                        card = new Card(name, color);
-                    } else {
-                        card = new DrawTwoCard(new Card("2+", color));
-                    }
-                } catch (NumberFormatException e) {
-                    switch (nameWithoutColor) {
-                        case "ChangeColor":
-                            card = new ChangeColorCard(new Card("ChangeColor", color));
-                            break;
-                        case "ChangeDirection":
-                            card = new ChangeDirectionCard(new Card("ChangeDirection", color));
-                            break;
-                        case "Plus":
-                            card = new PlusCard(new Card("Plus", color));
-                            break;
-                        case "Stop":
-                            card = new StopCard(new Card("Stop", color));
-                            break;
-                        case "SuperTaki":
-                            card = new SuperTakiCard(new Card("SuperTaki", color));
-                            break;
-                        case "Taki":
-                            card = new TakiCard(new Card("Taki", color));
-                            break;
-                        default:
-                            card = null;
-                            break;
-                    }
+            String cardName = handList.getSelectionModel().getSelectedItem(), color = cardName.substring(cardName.length() - 1);
+            String nameWithoutColor = cardName.substring(0, cardName.length() - 1);
+            ICard card;
+            try {
+                Integer.parseInt(cardName.substring(0, 1));
+                if (cardName.charAt(1) != '+') {
+                    card = new Card(nameWithoutColor, color);
+                } else {
+                    card = new DrawTwoCard(new Card("2+", color));
                 }
-                model.setChoosenCard(card);
-                model.gameRound();
+            } catch (NumberFormatException e) {
+                switch (nameWithoutColor) {
+                    case "ChangeColor":
+                        card = new ChangeColorCard(new Card("ChangeColor", color));
+                        break;
+                    case "ChangeDirection":
+                        card = new ChangeDirectionCard(new Card("ChangeDirection", color));
+                        break;
+                    case "Plus":
+                        card = new PlusCard(new Card("Plus", color));
+                        break;
+                    case "Stop":
+                        card = new StopCard(new Card("Stop", color));
+                        break;
+                    case "SuperTaki":
+                        card = new SuperTakiCard(new Card("SuperTaki", color));
+                        break;
+                    case "Taki":
+                        card = new TakiCard(new Card("Taki", color));
+                        break;
+                    default:
+                        card = null;
+                        break;
+                }
             }
+            model.setChoosenCard(card);
+            updateScene();
+            model.gameRound();
+            updateScene();
+            // handList.setDisable(true);
         }
     };
     @FXML
@@ -93,6 +103,7 @@ public class GameController implements IController {
 
     @Override
     public void updateScene() {
+        System.out.println("MMMMMMMMMMMM");
         if (this.model.isWon()) {
             try {
                 new WinScreenView().start(this.stage);
@@ -101,6 +112,15 @@ public class GameController implements IController {
                 e.printStackTrace();
             }
         }
+        String topPileCardName = model.getTopPileCard().getName() + model.getTopPileCard().getColor() + ".jpg";
+        try {
+            String imgName = getClass().getResource(topPileCardName).toURI().toString();
+            pileTopCard.setImage(new Image(imgName ,70 ,110, true, true));
+        } catch (URISyntaxException e) {
+            System.out.println("error");
+            e.printStackTrace();
+        }
+        this.handList.setDisable(false);
         List<ICard> hand = this.model.getPlayerHand();
         List<String> handString = new ArrayList<>();
         for (ICard c : hand) {
@@ -119,7 +139,7 @@ public class GameController implements IController {
                     String[] cards = model.getAllCardsNames();
                     for (String cardString : cards) {
                         if (cardName.equals(cardString)) {
-                            System.out.println(cardName);
+                            // System.out.println(cardName);
                             try {
                                 img.setImage(new Image(getClass().getResource(cardName + ".jpg").toURI().toString(),70 ,110, true, true));
                             } catch (URISyntaxException e) {
@@ -136,6 +156,7 @@ public class GameController implements IController {
             }
         });
         this.handList.setItems(observableHand);
+        this.handList.refresh();
     }
 
     public void setModel(Model m) {
@@ -149,6 +170,11 @@ public class GameController implements IController {
     @Override
     public void setStage(Stage stage) {
         this.stage = stage;
+    }
+
+    @FXML
+    private void initialize() {
+        // this.handList.setOnMouseClicked();
     }
 
 }

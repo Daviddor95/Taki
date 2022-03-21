@@ -10,7 +10,7 @@ public class PiramidGameModel extends IGameModel{
     }
 
     @Override
-    public void courseOfGame() {
+    public void gameRound() {
 
     }
 
