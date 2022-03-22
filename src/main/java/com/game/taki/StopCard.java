@@ -1,13 +1,10 @@
 package com.game.taki;
 
-import java.util.ArrayList;
-
 public class StopCard extends DecoratedCard{
 
     public StopCard(ICard decoratedCard) {
         super(decoratedCard);
     }
-
 
     @Override
     public void doAction(GameModel game) {
@@ -15,7 +12,6 @@ public class StopCard extends DecoratedCard{
         if(game.getNumberOfTimesItsStillMyTurn() == 0 || game.getNumberOfTimesItsStillMyTurn() == 1){
             addedBehavior(game);
         }
-
     }
 
     protected void addedBehavior(GameModel game) {

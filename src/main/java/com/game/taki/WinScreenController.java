@@ -30,10 +30,10 @@ public class WinScreenController implements IController {
     @Override
     public void updateScene() {
         int playerWon = this.model.whoWon();
-        if (playerWon == 0) {
+        if (playerWon == this.model.getPersonIndex()) {
             this.winMessage.setText("You won!");
         } else {
-            this.winMessage.setText("Player " + playerWon + " won");
+            this.winMessage.setText("PC " + playerWon + " won");
         }
     }
 }

@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class ComputerDiffStrategy implements AIStrategy {
 
-    //The same as ComputerSimpleStrategy, but we ick the first valid card we can use
+    //The same as ComputerSimpleStrategy, but we pick the first valid card we can use
     @Override
     public void doOperation(Player p, ICard current, GameModel game) {
         CardsCollection playersCards = p.getCardsCollect();

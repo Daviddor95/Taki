@@ -5,5 +5,4 @@ public interface ICard {
     boolean isValidAction(ICard current, GameModel g);
     String getName();
     String getColor();
-
 }

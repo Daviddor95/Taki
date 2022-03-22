@@ -55,9 +55,6 @@ public class GameController implements IController {
                 }
             } catch (NumberFormatException e) {
                 switch (nameWithoutColor) {
-                    case "ChangeColor":
-                        card = new ChangeColorCard(new Card("ChangeColor", color));
-                        break;
                     case "ChangeDirection":
                         card = new ChangeDirectionCard(new Card("ChangeDirection", color));
                         break;
@@ -79,10 +76,8 @@ public class GameController implements IController {
                 }
             }
             model.setChoosenCard(card);
-            // updateScene();
             model.gameRound();
             updateScene();
-            // handList.setDisable(true);
         }
     };
 
@@ -92,7 +87,7 @@ public class GameController implements IController {
             try {
                 new WinScreenView().start(this.stage);
                 this.model.winScreen();
-                if (this.model.whoWon() == this.model.getPersonIndex()) {
+                if (this.model.whoWon() == this.model.getPersonIndex() && this.model.isSignedIn()) {
                     this.model.updateScore();
                 }
                 return;
@@ -156,7 +151,6 @@ public class GameController implements IController {
                     }
                     setGraphic(img);
                     setOnMouseClicked(onPickCardFromHandClick);
-                    // updateScene();
                     setId(cardName);
                 }
             }
@@ -177,10 +171,4 @@ public class GameController implements IController {
     public void setStage(Stage stage) {
         this.stage = stage;
     }
-
-    @FXML
-    private void initialize() {
-        // this.handList.setOnMouseClicked();
-    }
-
 }

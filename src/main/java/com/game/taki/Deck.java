@@ -6,10 +6,10 @@ import java.util.List;
 public class Deck {
     private CardsCollection cards;
     private ArrayList<String> ColorsInGame;
+
     public Deck(ArrayList<String> ColorsInGame){
         this.ColorsInGame = ColorsInGame;
         this.cards = new CardsCollection();
-
         for (int i = 0; i < ColorsInGame.size(); i++) {
             for(int j =0; j < 2;j++){
                 for (int num = 1; num < 10; num++) {
@@ -24,11 +24,6 @@ public class Deck {
         }
         cards.add(new SuperTakiCard(new Card("SuperTaki", "C")));
         cards.add(new SuperTakiCard(new Card("SuperTaki", "C")));
-
-//        cards.add(new ChangeColorCard(new Card("ChangeColor", "C")));
-//        cards.add(new ChangeColorCard(new Card("ChangeColor", "C")));
-//        cards.add(new ChangeColorCard(new Card("ChangeColor", "C")));
-//        cards.add(new ChangeColorCard(new Card("ChangeColor", "C")));
         this.shuffle();
     }
 
@@ -57,7 +52,6 @@ public class Deck {
         ColorsInGame = colorsInGame;
     }
 
-    //TO CHECK FOR MYSELF
     public void removeTopCardInDeck(){
         cards.remove(cards.getCardsFromCollection().get(cards.getTopIndex()));
     }

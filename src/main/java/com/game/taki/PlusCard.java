@@ -6,7 +6,6 @@ public class PlusCard extends DecoratedCard{
         super(decoratedCard);
     }
 
-
     @Override
     public void doAction(GameModel game) {
         decoratedCard.doAction(game);

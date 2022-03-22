@@ -18,6 +18,7 @@ public class PileOfPlayedCards {
     public void addToPlayedCards(ICard newTopCard){
         this.playedCards.add(newTopCard);
     }
+
     public void setCurrentTopCard(ICard newTopCard) {
         this.currentTopCard = newTopCard;
     }

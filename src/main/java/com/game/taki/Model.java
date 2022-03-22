@@ -2,7 +2,6 @@ package com.game.taki;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import java.util.List;
 import java.util.Map;
 
@@ -44,7 +43,6 @@ public class Model {
         this.password = password;
     }
 
-    // startScreen
     public boolean logIn() {
         if (!this.usersDatabase.isExist(this.userName) ||
                 !this.usersDatabase.getPassword(this.userName).equals(this.password)) {
@@ -67,9 +65,7 @@ public class Model {
         }
         return false;
     }
-    // ------
 
-    // leaderboard
     public boolean showLeaderboard() {
         this.controller.updateScene();
         return true;
@@ -88,7 +84,6 @@ public class Model {
     public void updateScore() {
         this.usersDatabase.updateScore(this.userName);
     }
-    // ------------
 
     public boolean showSettings() {
         return true;
@@ -120,11 +115,6 @@ public class Model {
                 "7Y", "8B", "8G", "8R", "8Y", "9B", "9G", "9R", "9Y", "ChangeDirectionB",
                 "ChangeDirectionG", "ChangeDirectionR", "ChangeDirectionY", "PlusB", "PlusG", "PlusR", "PlusY", "StopB",
                 "StopG", "StopR", "StopY", "SuperTakiC", "TakiB", "TakiG", "TakiR", "TakiY"};
-    }
-//  "ChangeColorC",
-    public void doCardAction(ICard card) {
-        gameModel.setChoosenCardInThisTurn(card);
-        card.doAction(gameModel);
     }
 
     public void setChoosenCard(ICard card) {
@@ -161,5 +151,9 @@ public class Model {
 
     public void takeCards() {
         gameModel.takeCards();
+    }
+
+    public boolean isSignedIn() {
+        return this.isSignedIn;
     }
 }

@@ -48,7 +48,7 @@ public class GameModel extends IGameModel{
     public void ReverseOrderOfPlayers()
     {
         // Arraylist for storing reversed elements
-        ArrayList<Player> revPlayerList = new ArrayList<Player>();
+        ArrayList<Player> revPlayerList = new ArrayList<>();
         for (int i = players.size() - 1; i >= 0; i--) {
             // Append the elements in reverse order
             revPlayerList.add(players.get(i));
@@ -56,7 +56,6 @@ public class GameModel extends IGameModel{
         this.setPlayers(revPlayerList);
         this.wasReversed = true;
     }
-
 
     public Deck getDeck() {
         return deck;
@@ -92,12 +91,6 @@ public class GameModel extends IGameModel{
 
     public void setCurrentPlayerIndex(int currentPlayerIndex) {
         this.currentPlayerIndex = currentPlayerIndex;
-    }
-
-    public void changeCurrentPlayerToTheNextOne() {
-        if(isNextPlayer){
-            this.currentPlayerIndex = this.getNextPlayerIndex();
-        }
     }
 
     public boolean isNextPlayer() {
@@ -136,10 +129,6 @@ public class GameModel extends IGameModel{
         }
     }
 
-    public Player getPreviousPlayer(){
-        return players.get(getPreviousPlayerIndex());
-    }
-
     public boolean isNextStopped() {
         return isNextStopped;
     }
@@ -152,8 +141,6 @@ public class GameModel extends IGameModel{
         for(int i = 0; i < players.size(); i++){
             CardsCollection c = new CardsCollection();
             for(int j=0; j < initialNumberOfCardsInHand; j++){
-                //c.add(pile.getCurrentTopCard());
-                //pile.removeTopCard();
                 c.add(deck.getCards().get(deck.getCardsCollect().getTopIndex()));
                 deck.removeTopCardInDeck();
             }
@@ -186,12 +173,6 @@ public class GameModel extends IGameModel{
     public void MakeAMove(Player p) {
         if (!this.isNextStopped) {
             p.getPlayingStrategy().doOperation(p, this.pile.getCurrentTopCard(), this);
-//            if (isWinning(p)) {
-//                this.isWon = true;
-//                this.
-//                //Enter winning message
-//                return;
-//            }
         } else {
             this.isNextStopped = false;
         }
@@ -212,7 +193,6 @@ public class GameModel extends IGameModel{
         currentPlayerIndex = indexOfPerson;
         MakeAMove(me);
         System.out.println(this.pile.getCurrentTopCard().getName() + this.pile.getCurrentTopCard().getColor());
-        // this.controller.updateScene();
         if(numberOfTimesItsStillMyTurn >0){
             setNumberOfTimesItsStillMyTurn(numberOfTimesItsStillMyTurn - 1);
             return;
