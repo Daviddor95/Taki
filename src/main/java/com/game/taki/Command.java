@@ -1,7 +1,7 @@
 package com.game.taki;
 
 public abstract class Command {
-    public Model model;
+    protected Model model;
 
     protected Command(Model m) {
         this.model = m;

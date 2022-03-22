@@ -2,6 +2,8 @@ package com.game.taki;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
+import java.util.List;
 import java.util.Map;
 
 public class Model {
@@ -82,6 +84,10 @@ public class Model {
         }
         return table;
     }
+
+    public void updateScore() {
+        this.usersDatabase.updateScore(this.userName);
+    }
     // ------------
 
     public boolean showSettings() {
@@ -111,11 +117,11 @@ public class Model {
     public String[] getAllCardsNames() {
         return new String[]{"1B", "1G", "1R", "1Y", "2+B", "2+G", "2+R", "2+Y", "2B", "2G", "2R", "2Y", "3B", "3G",
                 "3R", "3Y", "4B", "4G", "4R", "4Y", "5B", "5G", "5R", "5Y", "6B", "6G", "6R", "6Y", "7B", "7G", "7R",
-                "7Y", "8B", "8G", "8R", "8Y", "9B", "9G", "9R", "9Y", "ChangeColorC", "ChangeDirectionB",
+                "7Y", "8B", "8G", "8R", "8Y", "9B", "9G", "9R", "9Y", "ChangeDirectionB",
                 "ChangeDirectionG", "ChangeDirectionR", "ChangeDirectionY", "PlusB", "PlusG", "PlusR", "PlusY", "StopB",
                 "StopG", "StopR", "StopY", "SuperTakiC", "TakiB", "TakiG", "TakiR", "TakiY"};
     }
-
+//  "ChangeColorC",
     public void doCardAction(ICard card) {
         gameModel.setChoosenCardInThisTurn(card);
         card.doAction(gameModel);
@@ -129,8 +135,8 @@ public class Model {
         gameModel.gameRound();
     }
 
-    public boolean isWon() {
-        return gameModel.isWon();
+    public int whoWon() {
+        return gameModel.whoWon();
     }
 
     public boolean leaderboardBack() {
@@ -139,5 +145,21 @@ public class Model {
 
     public ICard getTopPileCard() {
         return gameModel.getTopPileCard();
+    }
+
+    public List<Player> getPlayers() {
+        return gameModel.getPlayers();
+    }
+
+    public void winScreen() {
+        this.controller.updateScene();
+    }
+
+    public int getPersonIndex() {
+        return gameModel.getPersonIndex();
+    }
+
+    public void takeCards() {
+        gameModel.takeCards();
     }
 }

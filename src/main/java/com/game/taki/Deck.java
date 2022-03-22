@@ -25,10 +25,10 @@ public class Deck {
         cards.add(new SuperTakiCard(new Card("SuperTaki", "C")));
         cards.add(new SuperTakiCard(new Card("SuperTaki", "C")));
 
-        cards.add(new ChangeColorCard(new Card("ChangeColor", "C")));
-        cards.add(new ChangeColorCard(new Card("ChangeColor", "C")));
-        cards.add(new ChangeColorCard(new Card("ChangeColor", "C")));
-        cards.add(new ChangeColorCard(new Card("ChangeColor", "C")));
+//        cards.add(new ChangeColorCard(new Card("ChangeColor", "C")));
+//        cards.add(new ChangeColorCard(new Card("ChangeColor", "C")));
+//        cards.add(new ChangeColorCard(new Card("ChangeColor", "C")));
+//        cards.add(new ChangeColorCard(new Card("ChangeColor", "C")));
         this.shuffle();
     }
 

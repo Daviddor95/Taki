@@ -13,12 +13,16 @@ public class Database implements IDatabase {
         this.users = new TreeMap<>();
         ArrayList<String> userDetails1 = new ArrayList<>();
         userDetails1.add("95");
-        userDetails1.add("10");
+        userDetails1.add("112");
         this.users.put("David", userDetails1);
         ArrayList<String> userDetails2 = new ArrayList<>();
         userDetails2.add("97");
-        userDetails2.add("9");
+        userDetails2.add("124");
         this.users.put("Ella", userDetails2);
+        ArrayList<String> userDetails3 = new ArrayList<>();
+        userDetails3.add("100");
+        userDetails3.add("150");
+        this.users.put("Miri", userDetails3);
     }
 
     @Override

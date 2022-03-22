@@ -13,12 +13,10 @@ public class GameModel extends IGameModel{
     private int numberOfTimesItsStillMyTurn;
     private boolean isNextStopped;
     private ICard choosenCardInThisTurn;
-    private int direction = 1;
     private int indexOfPerson = 0;
     private boolean wasReversed;
     private ArrayList<String> colors;
     private IController controller;
-    private boolean isWon;
     private int numberOfPlayers;
     private int handSize;
 
@@ -35,8 +33,6 @@ public class GameModel extends IGameModel{
         this.numberOfTimesItsStillMyTurn = 0;
         this.isNextStopped = false;
         this.wasReversed = false;
-        this.isWon = false;
-
     }
 
     public void setController(IController c) {
@@ -57,7 +53,6 @@ public class GameModel extends IGameModel{
             // Append the elements in reverse order
             revPlayerList.add(players.get(i));
         }
-
         this.setPlayers(revPlayerList);
         this.wasReversed = true;
     }
@@ -185,17 +180,18 @@ public class GameModel extends IGameModel{
         this.setChoosenCardInThisTurn(centralCard);
         this.pile.addToPlayedCards(centralCard);
         this.pile.setCurrentTopCard(centralCard);
-        this.controller.updateScene();
+        this.updateScene();
     }
 
     public void MakeAMove(Player p) {
         if (!this.isNextStopped) {
             p.getPlayingStrategy().doOperation(p, this.pile.getCurrentTopCard(), this);
-            if (isWinning(p)) {
-                this.isWon = true;
-                //Enter winning message
-                return;
-            }
+//            if (isWinning(p)) {
+//                this.isWon = true;
+//                this.
+//                //Enter winning message
+//                return;
+//            }
         } else {
             this.isNextStopped = false;
         }
@@ -215,6 +211,7 @@ public class GameModel extends IGameModel{
         Player me = this.players.get(indexOfPerson);
         currentPlayerIndex = indexOfPerson;
         MakeAMove(me);
+        System.out.println(this.pile.getCurrentTopCard().getName() + this.pile.getCurrentTopCard().getColor());
         // this.controller.updateScene();
         if(numberOfTimesItsStillMyTurn >0){
             setNumberOfTimesItsStillMyTurn(numberOfTimesItsStillMyTurn - 1);
@@ -241,10 +238,9 @@ public class GameModel extends IGameModel{
         }
         boolean person = false;
         while(!person) {
-            System.out.println(this.pile.getCurrentTopCard().getName() + this.pile.getCurrentTopCard().getColor());
-            // this.controller.updateScene();
+            this.updateScene();
             try {
-                sleep(1000);
+                sleep(300);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -289,10 +285,17 @@ public class GameModel extends IGameModel{
             if (i>=players.size()){
                 i = i - players.size();
             }
-            if ((this.numberOfTimesItsStillMyTurn == 0) && (i == indexOfPerson )) {
-                person = true;
+            if ((this.numberOfTimesItsStillMyTurn == 0) && (i == indexOfPerson)) {
+                if (!isNextStopped) {
+                    person = true;
+                    this.takeCards();
+                    this.updateScene();
+                } else {
+                    i = 1;
+                }
             }
-            // this.controller.updateScene();
+            System.out.println(this.pile.getCurrentTopCard().getName() + this.pile.getCurrentTopCard().getColor());
+            this.updateScene();
         }
     }
 
@@ -301,8 +304,13 @@ public class GameModel extends IGameModel{
         return p.getCardsCollect().isEmpty() && (p.getNumCardsHeNeedsToDraw() == 0);
     }
 
-    public boolean isWon() {
-        return this.isWon;
+    public int whoWon() {
+        for (int i = 0; i < this.getPlayers().size(); i++) {
+            if (this.isWinning(this.getPlayers().get(i))) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     public CardsCollection getPlayerHand() {
@@ -328,29 +336,27 @@ public class GameModel extends IGameModel{
     public void popPlayedCardOfCurrentPlayer(ICard card){
         this.players.get(this.currentPlayerIndex).popPlayedCard(card);
     }
+
+    public void updateScene() {
+        try {
+            sleep(300);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        this.controller.updateScene();
+    }
+
+    public int getPersonIndex() {
+        return this.indexOfPerson;
+    }
+
+    public void takeCards() {
+        Player person = this.getPlayers().get(this.indexOfPerson);
+        if (person.getNumCardsHeNeedsToDraw() > 0) {
+            for (int k = 0; k < person.getNumCardsHeNeedsToDraw(); k++) {
+                this.takingCardFromDeck(person);
+            }
+            person.setNumCardsHeNeedsToDraw(0);
+        }
+    }
 }
-
-//        while (!person) {
-//            p = p.
-//            if(isWinning(p)){
-//                    //Enter winning message
-//                    ok=false;
-//                    break;
-//            }
-//            person =true;
-//        }
-//        boolean ok=true;
-//        while (ok){
-//            for (int i = 0; i < players.size(); i++){
-//                Player p = players.get(i);
-//                while
-//                if (computer)
-//                    p.getPlayingStrategy().doOperation(p, this.pile.getCurrentTopCard(), this); // this.pile.getCurrentTopCard()
-//                if(isWinning(p)){
-//                    //Enter winning message
-//                    ok=false;
-//                    break;
-//                }
-//            }
-//        }
-

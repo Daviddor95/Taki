@@ -43,6 +43,7 @@ public class Card implements ICard {
             game.setCurrentTopCardInPile(this);
             game.popPlayedCardOfCurrentPlayer(this);
             game.setIsNextPlayer(true);
+            game.updateScene();
         }
     }
 

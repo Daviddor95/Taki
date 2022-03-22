@@ -9,7 +9,7 @@
    <ImageView fx:id="logo" fitHeight="150.0" fitWidth="200.0" layoutX="260.0" pickOnBounds="true" preserveRatio="true">
       <Image url="@Taki_Cards_Game_Logo.png" />
    </ImageView>
-   <Label fx:id="winMessage" alignment="CENTER" layoutX="360.0" layoutY="160.0" textAlignment="CENTER">
+   <Label fx:id="winMessage" alignment="CENTER" layoutX="270.0" layoutY="200.0" textAlignment="CENTER">
       <font>
          <Font size="64.0" />
       </font></Label>
